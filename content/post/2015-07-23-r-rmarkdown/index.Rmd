@@ -27,7 +27,6 @@ options(dplyr.summarise.inform = FALSE)
 
 The 2020 US election day is around the corner, thus in this paper, we are interested in forecasting the popular vote outcome of the 2020 American federal election. We have obtained survey data from Democracy Fund Voter Study Group (Tausanovitch & Lynn, 2020), and census data from IPUMS USA (Ruggles et al., 2020). To do this we are employing a logistic regression model and  a post-stratification technique. In the following sub-sections, I will describe the model specifics and the post-stratification calculations.
 
-
 ## Model Specifics
 
 Here we will build a logistic regression models to model the proportion of voters who will vote for Donald Trump. Since our response variable is binary, the logistic regression model will be suitable. As for the choice of variables, some research has shown that men would more prefer voting for Donald Trump than women (Tyson & Maniam, 2020). Additionally, young voters will more likely identify themselves as Democratic Party than elder voters (Rosentiel, 2020). As a result, the younger voters will be more in support of Joe Biden, while the elder voters with preference of Republican Party will more likely to vote for Donald Trump. Furthermore, the birth place may influence and shape one's political attitudes, thus affecting his/her voting preference. Therefore, we will choose these 3 variables as predictors in our model. The logistic regression model we are using is:

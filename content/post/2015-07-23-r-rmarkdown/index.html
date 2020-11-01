@@ -1,0 +1,5591 @@
+---
+title: "Forecasting for the 2020 US Election Using Post-stratification"
+author: "Shiqi Liu, Kai Sheng"
+date: 2020-11-02
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+---
+
+<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="index_files/anchor-sections/anchor-sections.js"></script>
+<script src="index_files/kePrint/kePrint.js"></script>
+<link href="index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<div id="model" class="section level1">
+<h1>Model</h1>
+<p>The 2020 US election day is around the corner, thus in this paper, we are interested in forecasting the popular vote outcome of the 2020 American federal election. We have obtained survey data from Democracy Fund Voter Study Group (Tausanovitch &amp; Lynn, 2020), and census data from IPUMS USA (Ruggles et al., 2020). To do this we are employing a logistic regression model and a post-stratification technique. In the following sub-sections, I will describe the model specifics and the post-stratification calculations.</p>
+<div id="model-specifics" class="section level2">
+<h2>Model Specifics</h2>
+<p>Here we will build a logistic regression models to model the proportion of voters who will vote for Donald Trump. Since our response variable is binary, the logistic regression model will be suitable. As for the choice of variables, some research has shown that men would more prefer voting for Donald Trump than women (Tyson &amp; Maniam, 2020). Additionally, young voters will more likely identify themselves as Democratic Party than elder voters (Rosentiel, 2020). As a result, the younger voters will be more in support of Joe Biden, while the elder voters with preference of Republican Party will more likely to vote for Donald Trump. Furthermore, the birth place may influence and shape one’s political attitudes, thus affecting his/her voting preference. Therefore, we will choose these 3 variables as predictors in our model. The logistic regression model we are using is:</p>
+<p><span class="math display">\[ log(\frac{p}{1-p}) = \beta_0+\beta_1  x_{age} + \beta_2x_{Male} + \beta_3x_{BornUS} + \epsilon\]</span></p>
+<p>Where <span class="math inline">\(p\)</span> represents the proportion of voters who will vote for Donald Trump in the model_t. Regarding the parameters, <span class="math inline">\(\beta_0\)</span> represents the intercept of the model, and is the log odds of voting for Donald Trump by a female voter at age 0, who is not born in US. Additionally, <span class="math inline">\(\beta_1\)</span> , <span class="math inline">\(\beta_2\)</span> , <span class="math inline">\(\beta_3\)</span> represent the slopes of the model, which are the coefficients representing the change in log odds. Specifically, for every unit increase in age, we expect the log odds of voting for Donald Trump to increase by <span class="math inline">\(\beta_1\)</span>. Furthermore, the log odds of voting for Donald Trump will increase by <span class="math inline">\(\beta_2\)</span> if the voter is male,and will increase by <span class="math inline">\(\beta_3\)</span> if the voter was born in US.</p>
+<p>In our trial model, we included “education” as our predictor variable as well. Nevertheless, after running our logistic regression model, no significance of parameters associated with educational level was observed, since p-values for all these parameters are significantly large. This indicates that the education level will not influence the voting preference for Donald Trump. Therefore, we decided only to use “age”, “gender” and “foreign_born” (which indicates whether the respondent was born in the US or not) as our predictors.</p>
+</div>
+<div id="post-stratification" class="section level2">
+<h2>Post-Stratification</h2>
+<p>In this section, we are performing a post-stratification analysis to estimate the proportion of voters who will vote for Donald Trump and Joe Biden. Post-stratification is to divide the population into cells based on combinations of various demographic attributes, then use the sample to estimate the response variable in each cell, and finally aggregate the cell-level estimates up to a population-level estimate by weighting each cell by its relative proportion in the population. Post-stratification technique can be used to correct the known differences between sample and target populations by re-weighting when dealing with a non-representative sample(Wang, 2014).</p>
+<p>Here we create cells based on genders, different ages and the birth places. Based on our selection of variables for the logistics regression model, “gender”, “age”, and “foreign_born” very likely to influence the voting preference of voters. Consequently, these 3 variables will tend to affect the voting outcome. Therefore, we will use these three variables to create cells.</p>
+<p>We will use the logistic regression model described in the previous model section to estimate the proportion of voters for Donald Trump in each cell. Finally, we will weight each proportion estimate within each cell by its respective population size, sum those values and divide that by the entire population size to get our estimate.</p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<pre><code>## # A tibble: 4 x 5
+##   term                          estimate std.error statistic  p.value
+##   &lt;chr&gt;                            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)                    -1.37     0.145       -9.45 3.29e-21
+## 2 age                             0.0132   0.00170      7.73 1.07e-14
+## 3 gendermale                      0.529    0.0565       9.36 8.03e-21
+## 4 foreign_bornThe United States   0.424    0.122        3.46 5.37e- 4</code></pre>
+<p>Table 1: Logistic Regression Model Summary</p>
+<p>We summarise our regression model from the previous model section in the Table 1, it gives us the result that $ log() = -1.3717 + 0.0132 x_{age} + 0.5286 x_{Male} + 0.4237 x_{BornUS} + $. From this result, we can see that the log odds of voting for Trump will increase by 0.0132 with one unit increase in age, and the log odds of voting for Trump will increase by 0.5286 if the voter is male and increase by 0.4237 if the voter is born in the US. The p-values for all 3 slope parameters are significantly small, which suggests that our data reject the null hypothesis <span class="math inline">\(H_0\)</span> that these parameters are zero.</p>
+<p>The results of our logistic regression model validate our hypothesis that the proportion of voting for Trump will increase as the voter’s age increases, or if the voter is male. Moreover, the proportion of voting for trump will tend to be higher if the voter is born in the US.</p>
+<p>Based on our logistic regression model above, we will carry out the post-stratification calculation to get the proportion of voters in favor of Donald Trump for the whole population. The post-stratification calculation is:</p>
+<p><span class="math display">\[\hat{y}^{PS} = \frac{\sum_{i=1}^{I} N_i\hat{y_i}}{\sum_{i=1}^{I} N_i}\]</span>
+where <span class="math inline">\(\hat{y_i}\)</span> is the estimate of the proportion in cell <span class="math inline">\(i\)</span> , and <span class="math inline">\(N_i\)</span> is the size of the <span class="math inline">\(i\)</span>th cell.</p>
+<p>Based off our post-stratification analysis and calculation, the estimate for the proportion of voters in favour of voting for Donald Trump is 0.3876, and the proportion voting for Joe Biden is 0.6124. The estimate is modelled by our logistic regression model, which explained the influence of gender, age and birth place on the voting outcome.</p>
+The estimates of proportion of voting for Donald Trump and Joe Biden within each cell are exhibited in the following Table 2.
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:left;">
+foreign_born
+</th>
+<th style="text-align:right;">
+vote_trump
+</th>
+<th style="text-align:right;">
+vote_biden
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2433326
+</td>
+<td style="text-align:right;">
+0.7566674
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3294158
+</td>
+<td style="text-align:right;">
+0.6705842
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3529926
+</td>
+<td style="text-align:right;">
+0.6470074
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4545646
+</td>
+<td style="text-align:right;">
+0.5454354
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2457669
+</td>
+<td style="text-align:right;">
+0.7542331
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3323331
+</td>
+<td style="text-align:right;">
+0.6676669
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3560078
+</td>
+<td style="text-align:right;">
+0.6439922
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4578334
+</td>
+<td style="text-align:right;">
+0.5421666
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2482176
+</td>
+<td style="text-align:right;">
+0.7517824
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3352633
+</td>
+<td style="text-align:right;">
+0.6647367
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3590344
+</td>
+<td style="text-align:right;">
+0.6409656
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4611059
+</td>
+<td style="text-align:right;">
+0.5388941
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2506846
+</td>
+<td style="text-align:right;">
+0.7493154
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3382062
+</td>
+<td style="text-align:right;">
+0.6617938
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3620724
+</td>
+<td style="text-align:right;">
+0.6379276
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4643818
+</td>
+<td style="text-align:right;">
+0.5356182
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2531678
+</td>
+<td style="text-align:right;">
+0.7468322
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3411617
+</td>
+<td style="text-align:right;">
+0.6588383
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3651214
+</td>
+<td style="text-align:right;">
+0.6348786
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4676607
+</td>
+<td style="text-align:right;">
+0.5323393
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2556673
+</td>
+<td style="text-align:right;">
+0.7443327
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3441296
+</td>
+<td style="text-align:right;">
+0.6558704
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3681812
+</td>
+<td style="text-align:right;">
+0.6318188
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4709425
+</td>
+<td style="text-align:right;">
+0.5290575
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2581829
+</td>
+<td style="text-align:right;">
+0.7418171
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3471097
+</td>
+<td style="text-align:right;">
+0.6528903
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3712517
+</td>
+<td style="text-align:right;">
+0.6287483
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4742267
+</td>
+<td style="text-align:right;">
+0.5257733
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2607146
+</td>
+<td style="text-align:right;">
+0.7392854
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3501018
+</td>
+<td style="text-align:right;">
+0.6498982
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3743326
+</td>
+<td style="text-align:right;">
+0.6256674
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4775132
+</td>
+<td style="text-align:right;">
+0.5224868
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2632623
+</td>
+<td style="text-align:right;">
+0.7367377
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3531058
+</td>
+<td style="text-align:right;">
+0.6468942
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3774238
+</td>
+<td style="text-align:right;">
+0.6225762
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4808016
+</td>
+<td style="text-align:right;">
+0.5191984
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2658259
+</td>
+<td style="text-align:right;">
+0.7341741
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3561214
+</td>
+<td style="text-align:right;">
+0.6438786
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3805249
+</td>
+<td style="text-align:right;">
+0.6194751
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4840917
+</td>
+<td style="text-align:right;">
+0.5159083
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2684054
+</td>
+<td style="text-align:right;">
+0.7315946
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3591485
+</td>
+<td style="text-align:right;">
+0.6408515
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3836359
+</td>
+<td style="text-align:right;">
+0.6163641
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4873832
+</td>
+<td style="text-align:right;">
+0.5126168
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2710007
+</td>
+<td style="text-align:right;">
+0.7289993
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3621869
+</td>
+<td style="text-align:right;">
+0.6378131
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3867564
+</td>
+<td style="text-align:right;">
+0.6132436
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4906758
+</td>
+<td style="text-align:right;">
+0.5093242
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2736117
+</td>
+<td style="text-align:right;">
+0.7263883
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3652363
+</td>
+<td style="text-align:right;">
+0.6347637
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3898862
+</td>
+<td style="text-align:right;">
+0.6101138
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4939692
+</td>
+<td style="text-align:right;">
+0.5060308
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2762384
+</td>
+<td style="text-align:right;">
+0.7237616
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3682965
+</td>
+<td style="text-align:right;">
+0.6317035
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3930251
+</td>
+<td style="text-align:right;">
+0.6069749
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4972631
+</td>
+<td style="text-align:right;">
+0.5027369
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2788805
+</td>
+<td style="text-align:right;">
+0.7211195
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3713674
+</td>
+<td style="text-align:right;">
+0.6286326
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3961728
+</td>
+<td style="text-align:right;">
+0.6038272
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5005572
+</td>
+<td style="text-align:right;">
+0.4994428
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2815382
+</td>
+<td style="text-align:right;">
+0.7184618
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3744487
+</td>
+<td style="text-align:right;">
+0.6255513
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3993292
+</td>
+<td style="text-align:right;">
+0.6006708
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5038513
+</td>
+<td style="text-align:right;">
+0.4961487
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2842111
+</td>
+<td style="text-align:right;">
+0.7157889
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3775403
+</td>
+<td style="text-align:right;">
+0.6224597
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4024940
+</td>
+<td style="text-align:right;">
+0.5975060
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5071450
+</td>
+<td style="text-align:right;">
+0.4928550
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2868993
+</td>
+<td style="text-align:right;">
+0.7131007
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3806418
+</td>
+<td style="text-align:right;">
+0.6193582
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4056669
+</td>
+<td style="text-align:right;">
+0.5943331
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5104382
+</td>
+<td style="text-align:right;">
+0.4895618
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2896027
+</td>
+<td style="text-align:right;">
+0.7103973
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3837531
+</td>
+<td style="text-align:right;">
+0.6162469
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4088478
+</td>
+<td style="text-align:right;">
+0.5911522
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5137304
+</td>
+<td style="text-align:right;">
+0.4862696
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2923210
+</td>
+<td style="text-align:right;">
+0.7076790
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3868739
+</td>
+<td style="text-align:right;">
+0.6131261
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4120362
+</td>
+<td style="text-align:right;">
+0.5879638
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5170215
+</td>
+<td style="text-align:right;">
+0.4829785
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2950543
+</td>
+<td style="text-align:right;">
+0.7049457
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3900041
+</td>
+<td style="text-align:right;">
+0.6099959
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4152321
+</td>
+<td style="text-align:right;">
+0.5847679
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5203110
+</td>
+<td style="text-align:right;">
+0.4796890
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.2978024
+</td>
+<td style="text-align:right;">
+0.7021976
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3931433
+</td>
+<td style="text-align:right;">
+0.6068567
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4184351
+</td>
+<td style="text-align:right;">
+0.5815649
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5235988
+</td>
+<td style="text-align:right;">
+0.4764012
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3005652
+</td>
+<td style="text-align:right;">
+0.6994348
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3962914
+</td>
+<td style="text-align:right;">
+0.6037086
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4216450
+</td>
+<td style="text-align:right;">
+0.5783550
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5268846
+</td>
+<td style="text-align:right;">
+0.4731154
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3033425
+</td>
+<td style="text-align:right;">
+0.6966575
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.3994481
+</td>
+<td style="text-align:right;">
+0.6005519
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4248616
+</td>
+<td style="text-align:right;">
+0.5751384
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5301680
+</td>
+<td style="text-align:right;">
+0.4698320
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3061343
+</td>
+<td style="text-align:right;">
+0.6938657
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4026132
+</td>
+<td style="text-align:right;">
+0.5973868
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4280845
+</td>
+<td style="text-align:right;">
+0.5719155
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5334488
+</td>
+<td style="text-align:right;">
+0.4665512
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3089403
+</td>
+<td style="text-align:right;">
+0.6910597
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4057864
+</td>
+<td style="text-align:right;">
+0.5942136
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4313135
+</td>
+<td style="text-align:right;">
+0.5686865
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5367268
+</td>
+<td style="text-align:right;">
+0.4632732
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3117606
+</td>
+<td style="text-align:right;">
+0.6882394
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4089676
+</td>
+<td style="text-align:right;">
+0.5910324
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4345484
+</td>
+<td style="text-align:right;">
+0.5654516
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5400015
+</td>
+<td style="text-align:right;">
+0.4599985
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3145948
+</td>
+<td style="text-align:right;">
+0.6854052
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4121563
+</td>
+<td style="text-align:right;">
+0.5878437
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4377889
+</td>
+<td style="text-align:right;">
+0.5622111
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5432728
+</td>
+<td style="text-align:right;">
+0.4567272
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3174430
+</td>
+<td style="text-align:right;">
+0.6825570
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4153525
+</td>
+<td style="text-align:right;">
+0.5846475
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4410346
+</td>
+<td style="text-align:right;">
+0.5589654
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5465404
+</td>
+<td style="text-align:right;">
+0.4534596
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3203048
+</td>
+<td style="text-align:right;">
+0.6796952
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4185557
+</td>
+<td style="text-align:right;">
+0.5814443
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4442855
+</td>
+<td style="text-align:right;">
+0.5557145
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5498040
+</td>
+<td style="text-align:right;">
+0.4501960
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3231803
+</td>
+<td style="text-align:right;">
+0.6768197
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4217659
+</td>
+<td style="text-align:right;">
+0.5782341
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4475411
+</td>
+<td style="text-align:right;">
+0.5524589
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5530633
+</td>
+<td style="text-align:right;">
+0.4469367
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3260692
+</td>
+<td style="text-align:right;">
+0.6739308
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4249827
+</td>
+<td style="text-align:right;">
+0.5750173
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4508012
+</td>
+<td style="text-align:right;">
+0.5491988
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5563180
+</td>
+<td style="text-align:right;">
+0.4436820
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3289713
+</td>
+<td style="text-align:right;">
+0.6710287
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4282058
+</td>
+<td style="text-align:right;">
+0.5717942
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4540655
+</td>
+<td style="text-align:right;">
+0.5459345
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5595679
+</td>
+<td style="text-align:right;">
+0.4404321
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3318866
+</td>
+<td style="text-align:right;">
+0.6681134
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4314351
+</td>
+<td style="text-align:right;">
+0.5685649
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4573338
+</td>
+<td style="text-align:right;">
+0.5426662
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5628128
+</td>
+<td style="text-align:right;">
+0.4371872
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3348148
+</td>
+<td style="text-align:right;">
+0.6651852
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4346702
+</td>
+<td style="text-align:right;">
+0.5653298
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4606058
+</td>
+<td style="text-align:right;">
+0.5393942
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5660522
+</td>
+<td style="text-align:right;">
+0.4339478
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3377558
+</td>
+<td style="text-align:right;">
+0.6622442
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4379109
+</td>
+<td style="text-align:right;">
+0.5620891
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4638812
+</td>
+<td style="text-align:right;">
+0.5361188
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5692860
+</td>
+<td style="text-align:right;">
+0.4307140
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3407094
+</td>
+<td style="text-align:right;">
+0.6592906
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4411568
+</td>
+<td style="text-align:right;">
+0.5588432
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4671597
+</td>
+<td style="text-align:right;">
+0.5328403
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5725139
+</td>
+<td style="text-align:right;">
+0.4274861
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3436754
+</td>
+<td style="text-align:right;">
+0.6563246
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4444079
+</td>
+<td style="text-align:right;">
+0.5555921
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4704410
+</td>
+<td style="text-align:right;">
+0.5295590
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5757357
+</td>
+<td style="text-align:right;">
+0.4242643
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3466536
+</td>
+<td style="text-align:right;">
+0.6533464
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4476636
+</td>
+<td style="text-align:right;">
+0.5523364
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4737249
+</td>
+<td style="text-align:right;">
+0.5262751
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5789510
+</td>
+<td style="text-align:right;">
+0.4210490
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3496440
+</td>
+<td style="text-align:right;">
+0.6503560
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4509239
+</td>
+<td style="text-align:right;">
+0.5490761
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4770110
+</td>
+<td style="text-align:right;">
+0.5229890
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5821597
+</td>
+<td style="text-align:right;">
+0.4178403
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3526461
+</td>
+<td style="text-align:right;">
+0.6473539
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4541884
+</td>
+<td style="text-align:right;">
+0.5458116
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4802992
+</td>
+<td style="text-align:right;">
+0.5197008
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5853614
+</td>
+<td style="text-align:right;">
+0.4146386
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3556600
+</td>
+<td style="text-align:right;">
+0.6443400
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4574568
+</td>
+<td style="text-align:right;">
+0.5425432
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4835890
+</td>
+<td style="text-align:right;">
+0.5164110
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5885559
+</td>
+<td style="text-align:right;">
+0.4114441
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3586854
+</td>
+<td style="text-align:right;">
+0.6413146
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4607289
+</td>
+<td style="text-align:right;">
+0.5392711
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4868803
+</td>
+<td style="text-align:right;">
+0.5131197
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5917430
+</td>
+<td style="text-align:right;">
+0.4082570
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3617220
+</td>
+<td style="text-align:right;">
+0.6382780
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4640044
+</td>
+<td style="text-align:right;">
+0.5359956
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4901727
+</td>
+<td style="text-align:right;">
+0.5098273
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5949223
+</td>
+<td style="text-align:right;">
+0.4050777
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3647697
+</td>
+<td style="text-align:right;">
+0.6352303
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4672830
+</td>
+<td style="text-align:right;">
+0.5327170
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4934660
+</td>
+<td style="text-align:right;">
+0.5065340
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5980938
+</td>
+<td style="text-align:right;">
+0.4019062
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3678283
+</td>
+<td style="text-align:right;">
+0.6321717
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4705645
+</td>
+<td style="text-align:right;">
+0.5294355
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4967599
+</td>
+<td style="text-align:right;">
+0.5032401
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6012570
+</td>
+<td style="text-align:right;">
+0.3987430
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3708976
+</td>
+<td style="text-align:right;">
+0.6291024
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4738484
+</td>
+<td style="text-align:right;">
+0.5261516
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5000540
+</td>
+<td style="text-align:right;">
+0.4999460
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6044118
+</td>
+<td style="text-align:right;">
+0.3955882
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3739774
+</td>
+<td style="text-align:right;">
+0.6260226
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4771347
+</td>
+<td style="text-align:right;">
+0.5228653
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5033481
+</td>
+<td style="text-align:right;">
+0.4966519
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6075580
+</td>
+<td style="text-align:right;">
+0.3924420
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3770673
+</td>
+<td style="text-align:right;">
+0.6229327
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4804229
+</td>
+<td style="text-align:right;">
+0.5195771
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5066419
+</td>
+<td style="text-align:right;">
+0.4933581
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6106952
+</td>
+<td style="text-align:right;">
+0.3893048
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3801674
+</td>
+<td style="text-align:right;">
+0.6198326
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4837128
+</td>
+<td style="text-align:right;">
+0.5162872
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5099352
+</td>
+<td style="text-align:right;">
+0.4900648
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6138233
+</td>
+<td style="text-align:right;">
+0.3861767
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3832772
+</td>
+<td style="text-align:right;">
+0.6167228
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4870042
+</td>
+<td style="text-align:right;">
+0.5129958
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5132276
+</td>
+<td style="text-align:right;">
+0.4867724
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6169420
+</td>
+<td style="text-align:right;">
+0.3830580
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3863966
+</td>
+<td style="text-align:right;">
+0.6136034
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4902966
+</td>
+<td style="text-align:right;">
+0.5097034
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5165188
+</td>
+<td style="text-align:right;">
+0.4834812
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6200512
+</td>
+<td style="text-align:right;">
+0.3799488
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3895253
+</td>
+<td style="text-align:right;">
+0.6104747
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4935899
+</td>
+<td style="text-align:right;">
+0.5064101
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5198086
+</td>
+<td style="text-align:right;">
+0.4801914
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6231505
+</td>
+<td style="text-align:right;">
+0.3768495
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3926632
+</td>
+<td style="text-align:right;">
+0.6073368
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.4968838
+</td>
+<td style="text-align:right;">
+0.5031162
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5230967
+</td>
+<td style="text-align:right;">
+0.4769033
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6262398
+</td>
+<td style="text-align:right;">
+0.3737602
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3958099
+</td>
+<td style="text-align:right;">
+0.6041901
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5001779
+</td>
+<td style="text-align:right;">
+0.4998221
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5263828
+</td>
+<td style="text-align:right;">
+0.4736172
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6293188
+</td>
+<td style="text-align:right;">
+0.3706812
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.3989654
+</td>
+<td style="text-align:right;">
+0.6010346
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5034720
+</td>
+<td style="text-align:right;">
+0.4965280
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5296666
+</td>
+<td style="text-align:right;">
+0.4703334
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6323873
+</td>
+<td style="text-align:right;">
+0.3676127
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4021292
+</td>
+<td style="text-align:right;">
+0.5978708
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5067658
+</td>
+<td style="text-align:right;">
+0.4932342
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5329478
+</td>
+<td style="text-align:right;">
+0.4670522
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6354451
+</td>
+<td style="text-align:right;">
+0.3645549
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4053012
+</td>
+<td style="text-align:right;">
+0.5946988
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5100590
+</td>
+<td style="text-align:right;">
+0.4899410
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5362262
+</td>
+<td style="text-align:right;">
+0.4637738
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6384921
+</td>
+<td style="text-align:right;">
+0.3615079
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4084811
+</td>
+<td style="text-align:right;">
+0.5915189
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5133514
+</td>
+<td style="text-align:right;">
+0.4866486
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5395015
+</td>
+<td style="text-align:right;">
+0.4604985
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6415280
+</td>
+<td style="text-align:right;">
+0.3584720
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4116687
+</td>
+<td style="text-align:right;">
+0.5883313
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5166426
+</td>
+<td style="text-align:right;">
+0.4833574
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5427733
+</td>
+<td style="text-align:right;">
+0.4572267
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6445525
+</td>
+<td style="text-align:right;">
+0.3554475
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4148637
+</td>
+<td style="text-align:right;">
+0.5851363
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5199323
+</td>
+<td style="text-align:right;">
+0.4800677
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5460415
+</td>
+<td style="text-align:right;">
+0.4539585
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6475656
+</td>
+<td style="text-align:right;">
+0.3524344
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4180659
+</td>
+<td style="text-align:right;">
+0.5819341
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5232203
+</td>
+<td style="text-align:right;">
+0.4767797
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5493057
+</td>
+<td style="text-align:right;">
+0.4506943
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6505669
+</td>
+<td style="text-align:right;">
+0.3494331
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4212751
+</td>
+<td style="text-align:right;">
+0.5787249
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5265063
+</td>
+<td style="text-align:right;">
+0.4734937
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5525657
+</td>
+<td style="text-align:right;">
+0.4474343
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6535564
+</td>
+<td style="text-align:right;">
+0.3464436
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4244909
+</td>
+<td style="text-align:right;">
+0.5755091
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5297901
+</td>
+<td style="text-align:right;">
+0.4702099
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5558211
+</td>
+<td style="text-align:right;">
+0.4441789
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6565338
+</td>
+<td style="text-align:right;">
+0.3434662
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4277131
+</td>
+<td style="text-align:right;">
+0.5722869
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5330712
+</td>
+<td style="text-align:right;">
+0.4669288
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5590718
+</td>
+<td style="text-align:right;">
+0.4409282
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6594989
+</td>
+<td style="text-align:right;">
+0.3405011
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4309414
+</td>
+<td style="text-align:right;">
+0.5690586
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5363495
+</td>
+<td style="text-align:right;">
+0.4636505
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5623174
+</td>
+<td style="text-align:right;">
+0.4376826
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6624516
+</td>
+<td style="text-align:right;">
+0.3375484
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4341756
+</td>
+<td style="text-align:right;">
+0.5658244
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5396246
+</td>
+<td style="text-align:right;">
+0.4603754
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5655577
+</td>
+<td style="text-align:right;">
+0.4344423
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6653917
+</td>
+<td style="text-align:right;">
+0.3346083
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4374155
+</td>
+<td style="text-align:right;">
+0.5625845
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5428963
+</td>
+<td style="text-align:right;">
+0.4571037
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5687924
+</td>
+<td style="text-align:right;">
+0.4312076
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6683190
+</td>
+<td style="text-align:right;">
+0.3316810
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+86
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4406606
+</td>
+<td style="text-align:right;">
+0.5593394
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+86
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5461644
+</td>
+<td style="text-align:right;">
+0.4538356
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+86
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5720212
+</td>
+<td style="text-align:right;">
+0.4279788
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+86
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6712334
+</td>
+<td style="text-align:right;">
+0.3287666
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4439109
+</td>
+<td style="text-align:right;">
+0.5560891
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5494284
+</td>
+<td style="text-align:right;">
+0.4505716
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5752440
+</td>
+<td style="text-align:right;">
+0.4247560
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6741346
+</td>
+<td style="text-align:right;">
+0.3258654
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4471660
+</td>
+<td style="text-align:right;">
+0.5528340
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5526882
+</td>
+<td style="text-align:right;">
+0.4473118
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5784603
+</td>
+<td style="text-align:right;">
+0.4215397
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6770225
+</td>
+<td style="text-align:right;">
+0.3229775
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4504256
+</td>
+<td style="text-align:right;">
+0.5495744
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5559435
+</td>
+<td style="text-align:right;">
+0.4440565
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5816700
+</td>
+<td style="text-align:right;">
+0.4183300
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6798971
+</td>
+<td style="text-align:right;">
+0.3201029
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4536894
+</td>
+<td style="text-align:right;">
+0.5463106
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5591940
+</td>
+<td style="text-align:right;">
+0.4408060
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5848728
+</td>
+<td style="text-align:right;">
+0.4151272
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6827580
+</td>
+<td style="text-align:right;">
+0.3172420
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4569573
+</td>
+<td style="text-align:right;">
+0.5430427
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5624394
+</td>
+<td style="text-align:right;">
+0.4375606
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5880684
+</td>
+<td style="text-align:right;">
+0.4119316
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6856051
+</td>
+<td style="text-align:right;">
+0.3143949
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4602289
+</td>
+<td style="text-align:right;">
+0.5397711
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5656795
+</td>
+<td style="text-align:right;">
+0.4343205
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5912566
+</td>
+<td style="text-align:right;">
+0.4087434
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6884384
+</td>
+<td style="text-align:right;">
+0.3115616
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4635039
+</td>
+<td style="text-align:right;">
+0.5364961
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5689140
+</td>
+<td style="text-align:right;">
+0.4310860
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5944372
+</td>
+<td style="text-align:right;">
+0.4055628
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6912576
+</td>
+<td style="text-align:right;">
+0.3087424
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4667820
+</td>
+<td style="text-align:right;">
+0.5332180
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5721426
+</td>
+<td style="text-align:right;">
+0.4278574
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.5976098
+</td>
+<td style="text-align:right;">
+0.4023902
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6940627
+</td>
+<td style="text-align:right;">
+0.3059373
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4700630
+</td>
+<td style="text-align:right;">
+0.5299370
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5753651
+</td>
+<td style="text-align:right;">
+0.4246349
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.6007743
+</td>
+<td style="text-align:right;">
+0.3992257
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+96
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4733466
+</td>
+<td style="text-align:right;">
+0.5266534
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+96
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5785811
+</td>
+<td style="text-align:right;">
+0.4214189
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+96
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.6039304
+</td>
+<td style="text-align:right;">
+0.3960696
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+96
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.6996298
+</td>
+<td style="text-align:right;">
+0.3003702
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+97
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4766325
+</td>
+<td style="text-align:right;">
+0.5233675
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+97
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5817906
+</td>
+<td style="text-align:right;">
+0.4182094
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+97
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.6070779
+</td>
+<td style="text-align:right;">
+0.3929221
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+97
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.7023915
+</td>
+<td style="text-align:right;">
+0.2976085
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.4799205
+</td>
+<td style="text-align:right;">
+0.5200795
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+The United States
+</td>
+<td style="text-align:right;">
+0.5849931
+</td>
+<td style="text-align:right;">
+0.4150069
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Another country
+</td>
+<td style="text-align:right;">
+0.6102165
+</td>
+<td style="text-align:right;">
+0.3897835
+</td>
+</tr>
+</tbody>
+</table>
+<p>Table 2: Post-stratification Estimate Within Each Cell</p>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+Figure 1: Voting Preference Across Genders</p>
+<p>From the Figure 1, we can see that male voters will more likely to support Donald Trump, while female voters are more likely to be in favour of voting for Joe Biden. This graph explains the influence of genders on the voting outcome.</p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+Figure 2: Voting Preference Changing With Age</p>
+<p>The Figure 2 above illustrates how different age groups affect the voting outcome. As we can see clearly from the graph, voters of older ages will more tend to vote for Donald Trump. On the other hand, younger voters are more likely to be in favor of voting for Joe Biden.</p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+Figure 3: Voting Preference Across Birth Place</p>
+<p>Regarding the influence of birth place on the voting outcome, the Figure 3 has shown that voters born in the US will more likely to vote for Donald Trump. On the contrary, voters who were born in foreign countries tend to be more support for Joe Biden.</p>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>In this paper, we have employed a logistic regression model and a post-stratification analysis to predict the overall popular vote outcome of the 2020 American federal election. We firstly fit our regression model based on the survey data to predict the proportion of voters in favour of voting for Donald Trump. Then we perform a post-stratification analysis based on census data by dividing the population into cells by different ages, genders and birth places. Finally, we use our model to calculate the proportion estimate of voters in support of Donald Trump. In addition, based off our regression model, we have also observed some significant predictor variables which will influence the voting outcome, which include gender, age and birth place.</p>
+<div id="data-cleaning" class="section level3">
+<h3>Data Cleaning</h3>
+<p>To better compare the proportion of voting in favour of Donald Trump and Joe Biden, we have removed observations with responds “Someone else” and “I would not vote”. Because samples with these two answers will not influence our forecasting for the proportion of voting for Trump and Biden, by removing these respondents, we can better focus on the observations which are meaningful for our prediction. Moreover, to further improve the accuracy of our prediction, since the census data was collected in 2018, we add age by 2 for each observation to get the respondents’ current age. Then we have removed those observations with ages under 18 and those non-citizens in the census data. Because non-citizens and population under 18 have no voting rights, those observations are meaningless in our prediction.</p>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Given our logistic regression model and post-stratification analysis, the most striking result to emerge form our analysis is that Joe Biden will win the popular vote of the 2020 American federal election, and the probability of Joe Biden winning the election will be 22.4840% higher than the probability of Donald Trump winning.</p>
+</div>
+<div id="weaknesses" class="section level2">
+<h2>Weaknesses</h2>
+<p>Despite the results given by our model and analysis, our work has some limitations. First, the amount of respondents of age greater than 90 in the survey data was very limited, those minorities might not be representative of all population of age greater than 90. Second, the survey data was collected between June 25 to July 01, 2020, there is a quite large time gap between the data collection time and the real election day. People’s political attitudes and preferences very likely to change during these 4 months, which will decrease the accuracy of our prediction. Furthermore, during this special COVID-19 period, multiple events will influence the 2020 election, which include the pandemic, the economic recession, and protests (Gruca &amp; Rietz, 2020). However, we did not take these factors into consideration when we perform our analysis. Last but not least, presidents are eventually elected by electoral college, but not by popular vote, our scientific prediction may also need to pick out what will evidentially influence the electoral college voting outcome.</p>
+</div>
+<div id="next-steps" class="section level2">
+<h2>Next Steps</h2>
+<p>First of all, we could compare our prediction with the actual election result and do a post-hoc analysis to identify the limitations of our model and methods and to better improve forecasting in future elections. Future work could be carried to do a survey collecting people’s demographics with their actual vote, which could help with exploring other significant predictor variables and identify other factors that will influence the voting outcome. Moreover, the social class could be a more efficient predictor variable in predicting the voting outcome, because it combines the income level, education level and profession altogether.</p>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Gruca, T., &amp; Rietz, T. (2020). The 2020 (Re)Election According to the Iowa Electronic Markets: Politics, Pandemic, Recession, and/or Protests? PS: Political Science &amp; Politics, 1-5. <a href="doi:10.1017/S1049096520001419" class="uri">doi:10.1017/S1049096520001419</a></p>
+<p>Hao Zhu (2020). kableExtra: Construct Complex Table with ‘kable’ and Pipe Syntax. <a href="http://haozhu233.github.io/kableExtra/" class="uri">http://haozhu233.github.io/kableExtra/</a>, <a href="https://github.com/haozhu233/kableExtra" class="uri">https://github.com/haozhu233/kableExtra</a>.</p>
+<p>Rosentiel, T. (2020, May 30). Gen Dems: The Party’s Advantage Among Young Voters Widens. Retrieved October 31, 2020, from <a href="https://www.pewresearch.org/2008/04/28/gen-dems-the-partys-advantage-among-young-voters-widens/" class="uri">https://www.pewresearch.org/2008/04/28/gen-dems-the-partys-advantage-among-young-voters-widens/</a></p>
+<p>Ruggles, S., Flood, S., Goeken, R., Grover, J., Meyer, E., Pacas, J., &amp; Sobek, M.. (n.d.). (2020). IPUMS USA: Version 10.0 [dataset]. Minneapolis, MN: IPUMS, 2020. <a href="https://doi.org/10.18128/D010.V10.0" class="uri">https://doi.org/10.18128/D010.V10.0</a></p>
+<p>Tausanovitch, C., &amp; Lynn V. (2020). Democracy Fund + UCLA Nationscape, October 10-
+17, 2019 (version 20200814). Retrieved from <a href="https://www.voterstudygroup.org/publication/nationscape-data-set" class="uri">https://www.voterstudygroup.org/publication/nationscape-data-set</a>.</p>
+<p>Tyson, A., &amp; Maniam, S. (2020, August 14). Behind Trump’s victory: Divisions by race, gender and education. Retrieved October 31, 2020, from <a href="https://www.pewresearch.org/fact-tank/2016/11/09/behind-trumps-victory-divisions-by-race-gender-education/" class="uri">https://www.pewresearch.org/fact-tank/2016/11/09/behind-trumps-victory-divisions-by-race-gender-education/</a></p>
+<p>Wang, W., et al., Forecasting elections with non-representative polls. International Journal of Forecasting (2014), <a href="http://dx.doi.org/10.1016/j.ijforecast.2014.06.001" class="uri">http://dx.doi.org/10.1016/j.ijforecast.2014.06.001</a></p>
+<p>Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a></p>
+</div>

@@ -1,0 +1,2550 @@
+age,gender,foreign_born,region,n
+18,male,Another country,new england division,28
+18,male,Another country,middle atlantic division,80
+18,male,Another country,east north central div,47
+18,male,Another country,west north central div,21
+18,male,Another country,south atlantic division,109
+18,male,Another country,east south central div,9
+18,male,Another country,west south central div,96
+18,male,Another country,mountain division,35
+18,male,Another country,pacific division,119
+18,male,The United States,new england division,6
+18,male,The United States,middle atlantic division,34
+18,male,The United States,east north central div,14
+18,male,The United States,west north central div,3
+18,male,The United States,south atlantic division,63
+18,male,The United States,east south central div,4
+18,male,The United States,west south central div,23
+18,male,The United States,mountain division,8
+18,male,The United States,pacific division,26
+18,female,Another country,new england division,15
+18,female,Another country,middle atlantic division,69
+18,female,Another country,east north central div,27
+18,female,Another country,west north central div,20
+18,female,Another country,south atlantic division,80
+18,female,Another country,east south central div,7
+18,female,Another country,west south central div,79
+18,female,Another country,mountain division,32
+18,female,Another country,pacific division,150
+18,female,The United States,new england division,5
+18,female,The United States,middle atlantic division,12
+18,female,The United States,east north central div,4
+18,female,The United States,west north central div,2
+18,female,The United States,south atlantic division,36
+18,female,The United States,east south central div,2
+18,female,The United States,west south central div,26
+18,female,The United States,mountain division,3
+18,female,The United States,pacific division,13
+19,male,Another country,new england division,20
+19,male,Another country,middle atlantic division,78
+19,male,Another country,east north central div,42
+19,male,Another country,west north central div,17
+19,male,Another country,south atlantic division,111
+19,male,Another country,east south central div,11
+19,male,Another country,west south central div,89
+19,male,Another country,mountain division,38
+19,male,Another country,pacific division,155
+19,male,The United States,new england division,5
+19,male,The United States,middle atlantic division,26
+19,male,The United States,east north central div,4
+19,male,The United States,west north central div,4
+19,male,The United States,south atlantic division,46
+19,male,The United States,east south central div,3
+19,male,The United States,west south central div,36
+19,male,The United States,mountain division,3
+19,male,The United States,pacific division,46
+19,female,Another country,new england division,27
+19,female,Another country,middle atlantic division,94
+19,female,Another country,east north central div,53
+19,female,Another country,west north central div,14
+19,female,Another country,south atlantic division,93
+19,female,Another country,east south central div,16
+19,female,Another country,west south central div,96
+19,female,Another country,mountain division,48
+19,female,Another country,pacific division,138
+19,female,The United States,new england division,5
+19,female,The United States,middle atlantic division,26
+19,female,The United States,east north central div,3
+19,female,The United States,south atlantic division,44
+19,female,The United States,east south central div,4
+19,female,The United States,west south central div,21
+19,female,The United States,mountain division,2
+19,female,The United States,pacific division,14
+20,male,Another country,new england division,50
+20,male,Another country,middle atlantic division,139
+20,male,Another country,east north central div,88
+20,male,Another country,west north central div,35
+20,male,Another country,south atlantic division,123
+20,male,Another country,east south central div,18
+20,male,Another country,west south central div,94
+20,male,Another country,mountain division,68
+20,male,Another country,pacific division,230
+20,male,The United States,new england division,11
+20,male,The United States,middle atlantic division,27
+20,male,The United States,east north central div,10
+20,male,The United States,west north central div,8
+20,male,The United States,south atlantic division,65
+20,male,The United States,east south central div,12
+20,male,The United States,west south central div,24
+20,male,The United States,mountain division,10
+20,male,The United States,pacific division,44
+20,female,Another country,new england division,69
+20,female,Another country,middle atlantic division,116
+20,female,Another country,east north central div,82
+20,female,Another country,west north central div,51
+20,female,Another country,south atlantic division,132
+20,female,Another country,east south central div,25
+20,female,Another country,west south central div,105
+20,female,Another country,mountain division,42
+20,female,Another country,pacific division,239
+20,female,The United States,new england division,14
+20,female,The United States,middle atlantic division,23
+20,female,The United States,east north central div,8
+20,female,The United States,west north central div,8
+20,female,The United States,south atlantic division,64
+20,female,The United States,east south central div,5
+20,female,The United States,west south central div,24
+20,female,The United States,mountain division,8
+20,female,The United States,pacific division,28
+21,male,Another country,new england division,66
+21,male,Another country,middle atlantic division,150
+21,male,Another country,east north central div,83
+21,male,Another country,west north central div,52
+21,male,Another country,south atlantic division,140
+21,male,Another country,east south central div,47
+21,male,Another country,west south central div,114
+21,male,Another country,mountain division,49
+21,male,Another country,pacific division,264
+21,male,The United States,new england division,16
+21,male,The United States,middle atlantic division,24
+21,male,The United States,east north central div,5
+21,male,The United States,west north central div,6
+21,male,The United States,south atlantic division,71
+21,male,The United States,east south central div,10
+21,male,The United States,west south central div,32
+21,male,The United States,mountain division,11
+21,male,The United States,pacific division,26
+21,female,Another country,new england division,64
+21,female,Another country,middle atlantic division,129
+21,female,Another country,east north central div,81
+21,female,Another country,west north central div,38
+21,female,Another country,south atlantic division,146
+21,female,Another country,east south central div,32
+21,female,Another country,west south central div,116
+21,female,Another country,mountain division,43
+21,female,Another country,pacific division,237
+21,female,The United States,new england division,12
+21,female,The United States,middle atlantic division,10
+21,female,The United States,east north central div,6
+21,female,The United States,west north central div,4
+21,female,The United States,south atlantic division,57
+21,female,The United States,east south central div,4
+21,female,The United States,west south central div,17
+21,female,The United States,mountain division,10
+21,female,The United States,pacific division,26
+22,male,Another country,new england division,68
+22,male,Another country,middle atlantic division,144
+22,male,Another country,east north central div,90
+22,male,Another country,west north central div,34
+22,male,Another country,south atlantic division,130
+22,male,Another country,east south central div,21
+22,male,Another country,west south central div,135
+22,male,Another country,mountain division,61
+22,male,Another country,pacific division,266
+22,male,The United States,new england division,7
+22,male,The United States,middle atlantic division,28
+22,male,The United States,east north central div,8
+22,male,The United States,west north central div,10
+22,male,The United States,south atlantic division,78
+22,male,The United States,east south central div,5
+22,male,The United States,west south central div,33
+22,male,The United States,mountain division,8
+22,male,The United States,pacific division,42
+22,female,Another country,new england division,47
+22,female,Another country,middle atlantic division,143
+22,female,Another country,east north central div,83
+22,female,Another country,west north central div,37
+22,female,Another country,south atlantic division,124
+22,female,Another country,east south central div,19
+22,female,Another country,west south central div,93
+22,female,Another country,mountain division,50
+22,female,Another country,pacific division,238
+22,female,The United States,new england division,9
+22,female,The United States,middle atlantic division,26
+22,female,The United States,east north central div,7
+22,female,The United States,west north central div,3
+22,female,The United States,south atlantic division,51
+22,female,The United States,east south central div,1
+22,female,The United States,west south central div,28
+22,female,The United States,mountain division,3
+22,female,The United States,pacific division,34
+23,male,Another country,new england division,45
+23,male,Another country,middle atlantic division,127
+23,male,Another country,east north central div,110
+23,male,Another country,west north central div,48
+23,male,Another country,south atlantic division,181
+23,male,Another country,east south central div,37
+23,male,Another country,west south central div,120
+23,male,Another country,mountain division,73
+23,male,Another country,pacific division,239
+23,male,The United States,new england division,16
+23,male,The United States,middle atlantic division,32
+23,male,The United States,east north central div,6
+23,male,The United States,west north central div,7
+23,male,The United States,south atlantic division,70
+23,male,The United States,east south central div,7
+23,male,The United States,west south central div,37
+23,male,The United States,mountain division,8
+23,male,The United States,pacific division,35
+23,female,Another country,new england division,65
+23,female,Another country,middle atlantic division,159
+23,female,Another country,east north central div,93
+23,female,Another country,west north central div,42
+23,female,Another country,south atlantic division,155
+23,female,Another country,east south central div,22
+23,female,Another country,west south central div,128
+23,female,Another country,mountain division,65
+23,female,Another country,pacific division,244
+23,female,The United States,new england division,16
+23,female,The United States,middle atlantic division,16
+23,female,The United States,east north central div,5
+23,female,The United States,west north central div,4
+23,female,The United States,south atlantic division,56
+23,female,The United States,east south central div,9
+23,female,The United States,west south central div,25
+23,female,The United States,mountain division,5
+23,female,The United States,pacific division,33
+24,male,Another country,new england division,53
+24,male,Another country,middle atlantic division,152
+24,male,Another country,east north central div,103
+24,male,Another country,west north central div,42
+24,male,Another country,south atlantic division,166
+24,male,Another country,east south central div,25
+24,male,Another country,west south central div,164
+24,male,Another country,mountain division,83
+24,male,Another country,pacific division,224
+24,male,The United States,new england division,15
+24,male,The United States,middle atlantic division,37
+24,male,The United States,east north central div,11
+24,male,The United States,west north central div,6
+24,male,The United States,south atlantic division,57
+24,male,The United States,east south central div,2
+24,male,The United States,west south central div,36
+24,male,The United States,mountain division,5
+24,male,The United States,pacific division,35
+24,female,Another country,new england division,45
+24,female,Another country,middle atlantic division,147
+24,female,Another country,east north central div,98
+24,female,Another country,west north central div,39
+24,female,Another country,south atlantic division,155
+24,female,Another country,east south central div,25
+24,female,Another country,west south central div,120
+24,female,Another country,mountain division,69
+24,female,Another country,pacific division,272
+24,female,The United States,new england division,9
+24,female,The United States,middle atlantic division,38
+24,female,The United States,east north central div,8
+24,female,The United States,west north central div,8
+24,female,The United States,south atlantic division,62
+24,female,The United States,east south central div,3
+24,female,The United States,west south central div,20
+24,female,The United States,mountain division,5
+24,female,The United States,pacific division,28
+25,male,Another country,new england division,41
+25,male,Another country,middle atlantic division,162
+25,male,Another country,east north central div,112
+25,male,Another country,west north central div,48
+25,male,Another country,south atlantic division,163
+25,male,Another country,east south central div,23
+25,male,Another country,west south central div,140
+25,male,Another country,mountain division,79
+25,male,Another country,pacific division,238
+25,male,The United States,new england division,13
+25,male,The United States,middle atlantic division,32
+25,male,The United States,east north central div,7
+25,male,The United States,west north central div,5
+25,male,The United States,south atlantic division,64
+25,male,The United States,east south central div,6
+25,male,The United States,west south central div,29
+25,male,The United States,mountain division,15
+25,male,The United States,pacific division,46
+25,female,Another country,new england division,46
+25,female,Another country,middle atlantic division,141
+25,female,Another country,east north central div,75
+25,female,Another country,west north central div,35
+25,female,Another country,south atlantic division,168
+25,female,Another country,east south central div,18
+25,female,Another country,west south central div,152
+25,female,Another country,mountain division,64
+25,female,Another country,pacific division,242
+25,female,The United States,new england division,16
+25,female,The United States,middle atlantic division,35
+25,female,The United States,east north central div,9
+25,female,The United States,west north central div,1
+25,female,The United States,south atlantic division,74
+25,female,The United States,east south central div,7
+25,female,The United States,west south central div,36
+25,female,The United States,mountain division,11
+25,female,The United States,pacific division,25
+26,male,Another country,new england division,56
+26,male,Another country,middle atlantic division,140
+26,male,Another country,east north central div,141
+26,male,Another country,west north central div,41
+26,male,Another country,south atlantic division,186
+26,male,Another country,east south central div,26
+26,male,Another country,west south central div,172
+26,male,Another country,mountain division,71
+26,male,Another country,pacific division,292
+26,male,The United States,new england division,22
+26,male,The United States,middle atlantic division,26
+26,male,The United States,east north central div,12
+26,male,The United States,west north central div,8
+26,male,The United States,south atlantic division,73
+26,male,The United States,east south central div,7
+26,male,The United States,west south central div,30
+26,male,The United States,mountain division,7
+26,male,The United States,pacific division,39
+26,female,Another country,new england division,59
+26,female,Another country,middle atlantic division,173
+26,female,Another country,east north central div,112
+26,female,Another country,west north central div,33
+26,female,Another country,south atlantic division,146
+26,female,Another country,east south central div,22
+26,female,Another country,west south central div,143
+26,female,Another country,mountain division,74
+26,female,Another country,pacific division,265
+26,female,The United States,new england division,6
+26,female,The United States,middle atlantic division,27
+26,female,The United States,east north central div,3
+26,female,The United States,west north central div,5
+26,female,The United States,south atlantic division,53
+26,female,The United States,east south central div,8
+26,female,The United States,west south central div,21
+26,female,The United States,mountain division,8
+26,female,The United States,pacific division,36
+27,male,Another country,new england division,39
+27,male,Another country,middle atlantic division,189
+27,male,Another country,east north central div,113
+27,male,Another country,west north central div,40
+27,male,Another country,south atlantic division,204
+27,male,Another country,east south central div,25
+27,male,Another country,west south central div,186
+27,male,Another country,mountain division,79
+27,male,Another country,pacific division,345
+27,male,The United States,new england division,18
+27,male,The United States,middle atlantic division,41
+27,male,The United States,east north central div,10
+27,male,The United States,west north central div,4
+27,male,The United States,south atlantic division,84
+27,male,The United States,east south central div,3
+27,male,The United States,west south central div,49
+27,male,The United States,mountain division,10
+27,male,The United States,pacific division,33
+27,female,Another country,new england division,40
+27,female,Another country,middle atlantic division,179
+27,female,Another country,east north central div,86
+27,female,Another country,west north central div,32
+27,female,Another country,south atlantic division,199
+27,female,Another country,east south central div,25
+27,female,Another country,west south central div,150
+27,female,Another country,mountain division,67
+27,female,Another country,pacific division,296
+27,female,The United States,new england division,9
+27,female,The United States,middle atlantic division,48
+27,female,The United States,east north central div,13
+27,female,The United States,west north central div,4
+27,female,The United States,south atlantic division,74
+27,female,The United States,east south central div,6
+27,female,The United States,west south central div,35
+27,female,The United States,mountain division,13
+27,female,The United States,pacific division,42
+28,male,Another country,new england division,63
+28,male,Another country,middle atlantic division,145
+28,male,Another country,east north central div,117
+28,male,Another country,west north central div,49
+28,male,Another country,south atlantic division,159
+28,male,Another country,east south central div,32
+28,male,Another country,west south central div,198
+28,male,Another country,mountain division,85
+28,male,Another country,pacific division,327
+28,male,The United States,new england division,13
+28,male,The United States,middle atlantic division,35
+28,male,The United States,east north central div,14
+28,male,The United States,west north central div,5
+28,male,The United States,south atlantic division,69
+28,male,The United States,east south central div,15
+28,male,The United States,west south central div,51
+28,male,The United States,mountain division,11
+28,male,The United States,pacific division,35
+28,female,Another country,new england division,56
+28,female,Another country,middle atlantic division,152
+28,female,Another country,east north central div,118
+28,female,Another country,west north central div,38
+28,female,Another country,south atlantic division,170
+28,female,Another country,east south central div,28
+28,female,Another country,west south central div,160
+28,female,Another country,mountain division,71
+28,female,Another country,pacific division,362
+28,female,The United States,new england division,14
+28,female,The United States,middle atlantic division,33
+28,female,The United States,east north central div,2
+28,female,The United States,west north central div,5
+28,female,The United States,south atlantic division,58
+28,female,The United States,east south central div,7
+28,female,The United States,west south central div,36
+28,female,The United States,mountain division,11
+28,female,The United States,pacific division,37
+29,male,Another country,new england division,58
+29,male,Another country,middle atlantic division,170
+29,male,Another country,east north central div,134
+29,male,Another country,west north central div,37
+29,male,Another country,south atlantic division,191
+29,male,Another country,east south central div,45
+29,male,Another country,west south central div,198
+29,male,Another country,mountain division,75
+29,male,Another country,pacific division,363
+29,male,The United States,new england division,17
+29,male,The United States,middle atlantic division,39
+29,male,The United States,east north central div,10
+29,male,The United States,west north central div,2
+29,male,The United States,south atlantic division,65
+29,male,The United States,east south central div,3
+29,male,The United States,west south central div,36
+29,male,The United States,mountain division,5
+29,male,The United States,pacific division,55
+29,female,Another country,new england division,71
+29,female,Another country,middle atlantic division,185
+29,female,Another country,east north central div,132
+29,female,Another country,west north central div,48
+29,female,Another country,south atlantic division,190
+29,female,Another country,east south central div,27
+29,female,Another country,west south central div,184
+29,female,Another country,mountain division,71
+29,female,Another country,pacific division,368
+29,female,The United States,new england division,21
+29,female,The United States,middle atlantic division,48
+29,female,The United States,east north central div,11
+29,female,The United States,west north central div,5
+29,female,The United States,south atlantic division,84
+29,female,The United States,east south central div,10
+29,female,The United States,west south central div,42
+29,female,The United States,mountain division,13
+29,female,The United States,pacific division,43
+30,male,Another country,new england division,67
+30,male,Another country,middle atlantic division,219
+30,male,Another country,east north central div,151
+30,male,Another country,west north central div,40
+30,male,Another country,south atlantic division,190
+30,male,Another country,east south central div,26
+30,male,Another country,west south central div,207
+30,male,Another country,mountain division,109
+30,male,Another country,pacific division,391
+30,male,The United States,new england division,16
+30,male,The United States,middle atlantic division,54
+30,male,The United States,east north central div,4
+30,male,The United States,west north central div,2
+30,male,The United States,south atlantic division,84
+30,male,The United States,east south central div,5
+30,male,The United States,west south central div,49
+30,male,The United States,mountain division,17
+30,male,The United States,pacific division,65
+30,female,Another country,new england division,73
+30,female,Another country,middle atlantic division,198
+30,female,Another country,east north central div,107
+30,female,Another country,west north central div,55
+30,female,Another country,south atlantic division,240
+30,female,Another country,east south central div,33
+30,female,Another country,west south central div,209
+30,female,Another country,mountain division,105
+30,female,Another country,pacific division,428
+30,female,The United States,new england division,19
+30,female,The United States,middle atlantic division,48
+30,female,The United States,east north central div,11
+30,female,The United States,west north central div,7
+30,female,The United States,south atlantic division,93
+30,female,The United States,east south central div,7
+30,female,The United States,west south central div,43
+30,female,The United States,mountain division,8
+30,female,The United States,pacific division,35
+31,male,Another country,new england division,54
+31,male,Another country,middle atlantic division,204
+31,male,Another country,east north central div,147
+31,male,Another country,west north central div,45
+31,male,Another country,south atlantic division,220
+31,male,Another country,east south central div,48
+31,male,Another country,west south central div,229
+31,male,Another country,mountain division,107
+31,male,Another country,pacific division,440
+31,male,The United States,new england division,23
+31,male,The United States,middle atlantic division,44
+31,male,The United States,east north central div,20
+31,male,The United States,west north central div,5
+31,male,The United States,south atlantic division,85
+31,male,The United States,east south central div,7
+31,male,The United States,west south central div,43
+31,male,The United States,mountain division,16
+31,male,The United States,pacific division,55
+31,female,Another country,new england division,66
+31,female,Another country,middle atlantic division,203
+31,female,Another country,east north central div,141
+31,female,Another country,west north central div,49
+31,female,Another country,south atlantic division,250
+31,female,Another country,east south central div,26
+31,female,Another country,west south central div,225
+31,female,Another country,mountain division,82
+31,female,Another country,pacific division,449
+31,female,The United States,new england division,16
+31,female,The United States,middle atlantic division,50
+31,female,The United States,east north central div,3
+31,female,The United States,west north central div,5
+31,female,The United States,south atlantic division,92
+31,female,The United States,east south central div,7
+31,female,The United States,west south central div,31
+31,female,The United States,mountain division,10
+31,female,The United States,pacific division,52
+32,male,Another country,new england division,61
+32,male,Another country,middle atlantic division,235
+32,male,Another country,east north central div,153
+32,male,Another country,west north central div,52
+32,male,Another country,south atlantic division,250
+32,male,Another country,east south central div,57
+32,male,Another country,west south central div,259
+32,male,Another country,mountain division,111
+32,male,Another country,pacific division,464
+32,male,The United States,new england division,17
+32,male,The United States,middle atlantic division,55
+32,male,The United States,east north central div,17
+32,male,The United States,west north central div,11
+32,male,The United States,south atlantic division,109
+32,male,The United States,east south central div,19
+32,male,The United States,west south central div,36
+32,male,The United States,mountain division,9
+32,male,The United States,pacific division,55
+32,female,Another country,new england division,70
+32,female,Another country,middle atlantic division,262
+32,female,Another country,east north central div,147
+32,female,Another country,west north central div,43
+32,female,Another country,south atlantic division,276
+32,female,Another country,east south central div,47
+32,female,Another country,west south central div,234
+32,female,Another country,mountain division,124
+32,female,Another country,pacific division,475
+32,female,The United States,new england division,17
+32,female,The United States,middle atlantic division,49
+32,female,The United States,east north central div,10
+32,female,The United States,west north central div,3
+32,female,The United States,south atlantic division,109
+32,female,The United States,east south central div,14
+32,female,The United States,west south central div,36
+32,female,The United States,mountain division,10
+32,female,The United States,pacific division,60
+33,male,Another country,new england division,64
+33,male,Another country,middle atlantic division,219
+33,male,Another country,east north central div,145
+33,male,Another country,west north central div,42
+33,male,Another country,south atlantic division,256
+33,male,Another country,east south central div,49
+33,male,Another country,west south central div,247
+33,male,Another country,mountain division,113
+33,male,Another country,pacific division,416
+33,male,The United States,new england division,18
+33,male,The United States,middle atlantic division,30
+33,male,The United States,east north central div,15
+33,male,The United States,west north central div,9
+33,male,The United States,south atlantic division,102
+33,male,The United States,east south central div,11
+33,male,The United States,west south central div,53
+33,male,The United States,mountain division,8
+33,male,The United States,pacific division,66
+33,female,Another country,new england division,73
+33,female,Another country,middle atlantic division,225
+33,female,Another country,east north central div,146
+33,female,Another country,west north central div,48
+33,female,Another country,south atlantic division,233
+33,female,Another country,east south central div,33
+33,female,Another country,west south central div,236
+33,female,Another country,mountain division,109
+33,female,Another country,pacific division,419
+33,female,The United States,new england division,20
+33,female,The United States,middle atlantic division,67
+33,female,The United States,east north central div,13
+33,female,The United States,west north central div,7
+33,female,The United States,south atlantic division,107
+33,female,The United States,east south central div,9
+33,female,The United States,west south central div,36
+33,female,The United States,mountain division,19
+33,female,The United States,pacific division,52
+34,male,Another country,new england division,69
+34,male,Another country,middle atlantic division,205
+34,male,Another country,east north central div,153
+34,male,Another country,west north central div,54
+34,male,Another country,south atlantic division,265
+34,male,Another country,east south central div,45
+34,male,Another country,west south central div,262
+34,male,Another country,mountain division,95
+34,male,Another country,pacific division,506
+34,male,The United States,new england division,31
+34,male,The United States,middle atlantic division,68
+34,male,The United States,east north central div,20
+34,male,The United States,west north central div,5
+34,male,The United States,south atlantic division,101
+34,male,The United States,east south central div,7
+34,male,The United States,west south central div,53
+34,male,The United States,mountain division,14
+34,male,The United States,pacific division,73
+34,female,Another country,new england division,74
+34,female,Another country,middle atlantic division,242
+34,female,Another country,east north central div,139
+34,female,Another country,west north central div,43
+34,female,Another country,south atlantic division,282
+34,female,Another country,east south central div,33
+34,female,Another country,west south central div,257
+34,female,Another country,mountain division,103
+34,female,Another country,pacific division,527
+34,female,The United States,new england division,23
+34,female,The United States,middle atlantic division,57
+34,female,The United States,east north central div,16
+34,female,The United States,west north central div,8
+34,female,The United States,south atlantic division,121
+34,female,The United States,east south central div,8
+34,female,The United States,west south central div,48
+34,female,The United States,mountain division,10
+34,female,The United States,pacific division,64
+35,male,Another country,new england division,83
+35,male,Another country,middle atlantic division,229
+35,male,Another country,east north central div,153
+35,male,Another country,west north central div,42
+35,male,Another country,south atlantic division,258
+35,male,Another country,east south central div,41
+35,male,Another country,west south central div,263
+35,male,Another country,mountain division,120
+35,male,Another country,pacific division,549
+35,male,The United States,new england division,32
+35,male,The United States,middle atlantic division,56
+35,male,The United States,east north central div,15
+35,male,The United States,west north central div,5
+35,male,The United States,south atlantic division,133
+35,male,The United States,east south central div,9
+35,male,The United States,west south central div,41
+35,male,The United States,mountain division,9
+35,male,The United States,pacific division,68
+35,female,Another country,new england division,81
+35,female,Another country,middle atlantic division,236
+35,female,Another country,east north central div,151
+35,female,Another country,west north central div,51
+35,female,Another country,south atlantic division,275
+35,female,Another country,east south central div,45
+35,female,Another country,west south central div,233
+35,female,Another country,mountain division,114
+35,female,Another country,pacific division,526
+35,female,The United States,new england division,25
+35,female,The United States,middle atlantic division,58
+35,female,The United States,east north central div,11
+35,female,The United States,west north central div,6
+35,female,The United States,south atlantic division,74
+35,female,The United States,east south central div,7
+35,female,The United States,west south central div,45
+35,female,The United States,mountain division,17
+35,female,The United States,pacific division,58
+36,male,Another country,new england division,72
+36,male,Another country,middle atlantic division,232
+36,male,Another country,east north central div,158
+36,male,Another country,west north central div,45
+36,male,Another country,south atlantic division,316
+36,male,Another country,east south central div,36
+36,male,Another country,west south central div,278
+36,male,Another country,mountain division,115
+36,male,Another country,pacific division,530
+36,male,The United States,new england division,24
+36,male,The United States,middle atlantic division,58
+36,male,The United States,east north central div,11
+36,male,The United States,west north central div,9
+36,male,The United States,south atlantic division,98
+36,male,The United States,east south central div,7
+36,male,The United States,west south central div,60
+36,male,The United States,mountain division,12
+36,male,The United States,pacific division,58
+36,female,Another country,new england division,79
+36,female,Another country,middle atlantic division,237
+36,female,Another country,east north central div,164
+36,female,Another country,west north central div,43
+36,female,Another country,south atlantic division,286
+36,female,Another country,east south central div,48
+36,female,Another country,west south central div,232
+36,female,Another country,mountain division,109
+36,female,Another country,pacific division,517
+36,female,The United States,new england division,21
+36,female,The United States,middle atlantic division,48
+36,female,The United States,east north central div,14
+36,female,The United States,west north central div,12
+36,female,The United States,south atlantic division,110
+36,female,The United States,east south central div,9
+36,female,The United States,west south central div,42
+36,female,The United States,mountain division,10
+36,female,The United States,pacific division,55
+37,male,Another country,new england division,71
+37,male,Another country,middle atlantic division,236
+37,male,Another country,east north central div,157
+37,male,Another country,west north central div,54
+37,male,Another country,south atlantic division,281
+37,male,Another country,east south central div,62
+37,male,Another country,west south central div,299
+37,male,Another country,mountain division,139
+37,male,Another country,pacific division,567
+37,male,The United States,new england division,32
+37,male,The United States,middle atlantic division,53
+37,male,The United States,east north central div,16
+37,male,The United States,west north central div,8
+37,male,The United States,south atlantic division,132
+37,male,The United States,east south central div,7
+37,male,The United States,west south central div,46
+37,male,The United States,mountain division,12
+37,male,The United States,pacific division,82
+37,female,Another country,new england division,77
+37,female,Another country,middle atlantic division,252
+37,female,Another country,east north central div,173
+37,female,Another country,west north central div,55
+37,female,Another country,south atlantic division,279
+37,female,Another country,east south central div,42
+37,female,Another country,west south central div,275
+37,female,Another country,mountain division,120
+37,female,Another country,pacific division,519
+37,female,The United States,new england division,17
+37,female,The United States,middle atlantic division,51
+37,female,The United States,east north central div,14
+37,female,The United States,west north central div,5
+37,female,The United States,south atlantic division,123
+37,female,The United States,east south central div,8
+37,female,The United States,west south central div,34
+37,female,The United States,mountain division,12
+37,female,The United States,pacific division,74
+38,male,Another country,new england division,78
+38,male,Another country,middle atlantic division,250
+38,male,Another country,east north central div,168
+38,male,Another country,west north central div,42
+38,male,Another country,south atlantic division,280
+38,male,Another country,east south central div,44
+38,male,Another country,west south central div,255
+38,male,Another country,mountain division,91
+38,male,Another country,pacific division,545
+38,male,The United States,new england division,25
+38,male,The United States,middle atlantic division,67
+38,male,The United States,east north central div,16
+38,male,The United States,west north central div,10
+38,male,The United States,south atlantic division,110
+38,male,The United States,east south central div,11
+38,male,The United States,west south central div,68
+38,male,The United States,mountain division,18
+38,male,The United States,pacific division,77
+38,female,Another country,new england division,73
+38,female,Another country,middle atlantic division,252
+38,female,Another country,east north central div,148
+38,female,Another country,west north central div,53
+38,female,Another country,south atlantic division,250
+38,female,Another country,east south central div,39
+38,female,Another country,west south central div,244
+38,female,Another country,mountain division,124
+38,female,Another country,pacific division,524
+38,female,The United States,new england division,22
+38,female,The United States,middle atlantic division,53
+38,female,The United States,east north central div,7
+38,female,The United States,west north central div,6
+38,female,The United States,south atlantic division,113
+38,female,The United States,east south central div,9
+38,female,The United States,west south central div,55
+38,female,The United States,mountain division,14
+38,female,The United States,pacific division,78
+39,male,Another country,new england division,71
+39,male,Another country,middle atlantic division,215
+39,male,Another country,east north central div,164
+39,male,Another country,west north central div,37
+39,male,Another country,south atlantic division,261
+39,male,Another country,east south central div,41
+39,male,Another country,west south central div,249
+39,male,Another country,mountain division,101
+39,male,Another country,pacific division,516
+39,male,The United States,new england division,17
+39,male,The United States,middle atlantic division,60
+39,male,The United States,east north central div,13
+39,male,The United States,west north central div,5
+39,male,The United States,south atlantic division,126
+39,male,The United States,east south central div,15
+39,male,The United States,west south central div,45
+39,male,The United States,mountain division,8
+39,male,The United States,pacific division,69
+39,female,Another country,new england division,59
+39,female,Another country,middle atlantic division,240
+39,female,Another country,east north central div,149
+39,female,Another country,west north central div,47
+39,female,Another country,south atlantic division,264
+39,female,Another country,east south central div,34
+39,female,Another country,west south central div,251
+39,female,Another country,mountain division,91
+39,female,Another country,pacific division,512
+39,female,The United States,new england division,18
+39,female,The United States,middle atlantic division,48
+39,female,The United States,east north central div,11
+39,female,The United States,west north central div,6
+39,female,The United States,south atlantic division,95
+39,female,The United States,east south central div,6
+39,female,The United States,west south central div,45
+39,female,The United States,mountain division,9
+39,female,The United States,pacific division,64
+40,male,Another country,new england division,68
+40,male,Another country,middle atlantic division,215
+40,male,Another country,east north central div,145
+40,male,Another country,west north central div,53
+40,male,Another country,south atlantic division,278
+40,male,Another country,east south central div,43
+40,male,Another country,west south central div,295
+40,male,Another country,mountain division,135
+40,male,Another country,pacific division,507
+40,male,The United States,new england division,18
+40,male,The United States,middle atlantic division,54
+40,male,The United States,east north central div,12
+40,male,The United States,west north central div,9
+40,male,The United States,south atlantic division,119
+40,male,The United States,east south central div,7
+40,male,The United States,west south central div,52
+40,male,The United States,mountain division,10
+40,male,The United States,pacific division,82
+40,female,Another country,new england division,68
+40,female,Another country,middle atlantic division,234
+40,female,Another country,east north central div,131
+40,female,Another country,west north central div,50
+40,female,Another country,south atlantic division,309
+40,female,Another country,east south central div,31
+40,female,Another country,west south central div,285
+40,female,Another country,mountain division,117
+40,female,Another country,pacific division,560
+40,female,The United States,new england division,20
+40,female,The United States,middle atlantic division,46
+40,female,The United States,east north central div,13
+40,female,The United States,west north central div,8
+40,female,The United States,south atlantic division,117
+40,female,The United States,east south central div,10
+40,female,The United States,west south central div,40
+40,female,The United States,mountain division,10
+40,female,The United States,pacific division,62
+41,male,Another country,new england division,67
+41,male,Another country,middle atlantic division,191
+41,male,Another country,east north central div,152
+41,male,Another country,west north central div,44
+41,male,Another country,south atlantic division,277
+41,male,Another country,east south central div,27
+41,male,Another country,west south central div,241
+41,male,Another country,mountain division,114
+41,male,Another country,pacific division,503
+41,male,The United States,new england division,9
+41,male,The United States,middle atlantic division,61
+41,male,The United States,east north central div,10
+41,male,The United States,west north central div,5
+41,male,The United States,south atlantic division,89
+41,male,The United States,east south central div,6
+41,male,The United States,west south central div,47
+41,male,The United States,mountain division,3
+41,male,The United States,pacific division,71
+41,female,Another country,new england division,67
+41,female,Another country,middle atlantic division,224
+41,female,Another country,east north central div,153
+41,female,Another country,west north central div,41
+41,female,Another country,south atlantic division,233
+41,female,Another country,east south central div,33
+41,female,Another country,west south central div,237
+41,female,Another country,mountain division,104
+41,female,Another country,pacific division,546
+41,female,The United States,new england division,24
+41,female,The United States,middle atlantic division,59
+41,female,The United States,east north central div,11
+41,female,The United States,west north central div,2
+41,female,The United States,south atlantic division,123
+41,female,The United States,east south central div,7
+41,female,The United States,west south central div,39
+41,female,The United States,mountain division,11
+41,female,The United States,pacific division,65
+42,male,Another country,new england division,70
+42,male,Another country,middle atlantic division,236
+42,male,Another country,east north central div,146
+42,male,Another country,west north central div,48
+42,male,Another country,south atlantic division,285
+42,male,Another country,east south central div,40
+42,male,Another country,west south central div,269
+42,male,Another country,mountain division,152
+42,male,Another country,pacific division,587
+42,male,The United States,new england division,26
+42,male,The United States,middle atlantic division,65
+42,male,The United States,east north central div,15
+42,male,The United States,west north central div,4
+42,male,The United States,south atlantic division,125
+42,male,The United States,east south central div,10
+42,male,The United States,west south central div,71
+42,male,The United States,mountain division,14
+42,male,The United States,pacific division,91
+42,female,Another country,new england division,56
+42,female,Another country,middle atlantic division,240
+42,female,Another country,east north central div,129
+42,female,Another country,west north central div,35
+42,female,Another country,south atlantic division,276
+42,female,Another country,east south central div,33
+42,female,Another country,west south central div,236
+42,female,Another country,mountain division,136
+42,female,Another country,pacific division,549
+42,female,The United States,new england division,18
+42,female,The United States,middle atlantic division,68
+42,female,The United States,east north central div,12
+42,female,The United States,west north central div,5
+42,female,The United States,south atlantic division,116
+42,female,The United States,east south central div,8
+42,female,The United States,west south central div,42
+42,female,The United States,mountain division,14
+42,female,The United States,pacific division,86
+43,male,Another country,new england division,60
+43,male,Another country,middle atlantic division,206
+43,male,Another country,east north central div,141
+43,male,Another country,west north central div,44
+43,male,Another country,south atlantic division,253
+43,male,Another country,east south central div,26
+43,male,Another country,west south central div,277
+43,male,Another country,mountain division,118
+43,male,Another country,pacific division,458
+43,male,The United States,new england division,22
+43,male,The United States,middle atlantic division,45
+43,male,The United States,east north central div,9
+43,male,The United States,west north central div,6
+43,male,The United States,south atlantic division,95
+43,male,The United States,east south central div,13
+43,male,The United States,west south central div,50
+43,male,The United States,mountain division,12
+43,male,The United States,pacific division,69
+43,female,Another country,new england division,53
+43,female,Another country,middle atlantic division,187
+43,female,Another country,east north central div,134
+43,female,Another country,west north central div,33
+43,female,Another country,south atlantic division,234
+43,female,Another country,east south central div,33
+43,female,Another country,west south central div,229
+43,female,Another country,mountain division,130
+43,female,Another country,pacific division,496
+43,female,The United States,new england division,22
+43,female,The United States,middle atlantic division,37
+43,female,The United States,east north central div,12
+43,female,The United States,west north central div,4
+43,female,The United States,south atlantic division,81
+43,female,The United States,east south central div,7
+43,female,The United States,west south central div,37
+43,female,The United States,mountain division,9
+43,female,The United States,pacific division,69
+44,male,Another country,new england division,49
+44,male,Another country,middle atlantic division,194
+44,male,Another country,east north central div,141
+44,male,Another country,west north central div,39
+44,male,Another country,south atlantic division,239
+44,male,Another country,east south central div,34
+44,male,Another country,west south central div,268
+44,male,Another country,mountain division,130
+44,male,Another country,pacific division,481
+44,male,The United States,new england division,24
+44,male,The United States,middle atlantic division,49
+44,male,The United States,east north central div,8
+44,male,The United States,west north central div,5
+44,male,The United States,south atlantic division,84
+44,male,The United States,east south central div,6
+44,male,The United States,west south central div,36
+44,male,The United States,mountain division,12
+44,male,The United States,pacific division,63
+44,female,Another country,new england division,47
+44,female,Another country,middle atlantic division,202
+44,female,Another country,east north central div,121
+44,female,Another country,west north central div,44
+44,female,Another country,south atlantic division,236
+44,female,Another country,east south central div,34
+44,female,Another country,west south central div,267
+44,female,Another country,mountain division,98
+44,female,Another country,pacific division,507
+44,female,The United States,new england division,14
+44,female,The United States,middle atlantic division,48
+44,female,The United States,east north central div,9
+44,female,The United States,west north central div,5
+44,female,The United States,south atlantic division,113
+44,female,The United States,east south central div,2
+44,female,The United States,west south central div,43
+44,female,The United States,mountain division,8
+44,female,The United States,pacific division,63
+45,male,Another country,new england division,41
+45,male,Another country,middle atlantic division,200
+45,male,Another country,east north central div,145
+45,male,Another country,west north central div,37
+45,male,Another country,south atlantic division,240
+45,male,Another country,east south central div,24
+45,male,Another country,west south central div,265
+45,male,Another country,mountain division,104
+45,male,Another country,pacific division,485
+45,male,The United States,new england division,22
+45,male,The United States,middle atlantic division,40
+45,male,The United States,east north central div,9
+45,male,The United States,west north central div,6
+45,male,The United States,south atlantic division,95
+45,male,The United States,east south central div,2
+45,male,The United States,west south central div,48
+45,male,The United States,mountain division,14
+45,male,The United States,pacific division,58
+45,female,Another country,new england division,39
+45,female,Another country,middle atlantic division,173
+45,female,Another country,east north central div,104
+45,female,Another country,west north central div,45
+45,female,Another country,south atlantic division,205
+45,female,Another country,east south central div,29
+45,female,Another country,west south central div,286
+45,female,Another country,mountain division,117
+45,female,Another country,pacific division,494
+45,female,The United States,new england division,23
+45,female,The United States,middle atlantic division,46
+45,female,The United States,east north central div,12
+45,female,The United States,west north central div,6
+45,female,The United States,south atlantic division,91
+45,female,The United States,east south central div,3
+45,female,The United States,west south central div,35
+45,female,The United States,mountain division,15
+45,female,The United States,pacific division,53
+46,male,Another country,new england division,45
+46,male,Another country,middle atlantic division,180
+46,male,Another country,east north central div,104
+46,male,Another country,west north central div,33
+46,male,Another country,south atlantic division,216
+46,male,Another country,east south central div,24
+46,male,Another country,west south central div,282
+46,male,Another country,mountain division,96
+46,male,Another country,pacific division,481
+46,male,The United States,new england division,20
+46,male,The United States,middle atlantic division,54
+46,male,The United States,east north central div,10
+46,male,The United States,west north central div,7
+46,male,The United States,south atlantic division,69
+46,male,The United States,east south central div,6
+46,male,The United States,west south central div,33
+46,male,The United States,mountain division,7
+46,male,The United States,pacific division,82
+46,female,Another country,new england division,57
+46,female,Another country,middle atlantic division,177
+46,female,Another country,east north central div,103
+46,female,Another country,west north central div,26
+46,female,Another country,south atlantic division,206
+46,female,Another country,east south central div,26
+46,female,Another country,west south central div,256
+46,female,Another country,mountain division,124
+46,female,Another country,pacific division,502
+46,female,The United States,new england division,24
+46,female,The United States,middle atlantic division,49
+46,female,The United States,east north central div,3
+46,female,The United States,west north central div,2
+46,female,The United States,south atlantic division,84
+46,female,The United States,east south central div,7
+46,female,The United States,west south central div,33
+46,female,The United States,mountain division,15
+46,female,The United States,pacific division,35
+47,male,Another country,new england division,52
+47,male,Another country,middle atlantic division,205
+47,male,Another country,east north central div,132
+47,male,Another country,west north central div,41
+47,male,Another country,south atlantic division,274
+47,male,Another country,east south central div,40
+47,male,Another country,west south central div,245
+47,male,Another country,mountain division,150
+47,male,Another country,pacific division,502
+47,male,The United States,new england division,19
+47,male,The United States,middle atlantic division,53
+47,male,The United States,east north central div,7
+47,male,The United States,west north central div,3
+47,male,The United States,south atlantic division,92
+47,male,The United States,east south central div,7
+47,male,The United States,west south central div,32
+47,male,The United States,mountain division,12
+47,male,The United States,pacific division,62
+47,female,Another country,new england division,54
+47,female,Another country,middle atlantic division,196
+47,female,Another country,east north central div,123
+47,female,Another country,west north central div,38
+47,female,Another country,south atlantic division,235
+47,female,Another country,east south central div,32
+47,female,Another country,west south central div,249
+47,female,Another country,mountain division,117
+47,female,Another country,pacific division,518
+47,female,The United States,new england division,17
+47,female,The United States,middle atlantic division,48
+47,female,The United States,east north central div,8
+47,female,The United States,west north central div,2
+47,female,The United States,south atlantic division,82
+47,female,The United States,east south central div,7
+47,female,The United States,west south central div,42
+47,female,The United States,mountain division,8
+47,female,The United States,pacific division,67
+48,male,Another country,new england division,45
+48,male,Another country,middle atlantic division,178
+48,male,Another country,east north central div,111
+48,male,Another country,west north central div,34
+48,male,Another country,south atlantic division,234
+48,male,Another country,east south central div,26
+48,male,Another country,west south central div,234
+48,male,Another country,mountain division,112
+48,male,Another country,pacific division,531
+48,male,The United States,new england division,12
+48,male,The United States,middle atlantic division,40
+48,male,The United States,east north central div,9
+48,male,The United States,west north central div,4
+48,male,The United States,south atlantic division,84
+48,male,The United States,east south central div,4
+48,male,The United States,west south central div,30
+48,male,The United States,mountain division,14
+48,male,The United States,pacific division,53
+48,female,Another country,new england division,41
+48,female,Another country,middle atlantic division,163
+48,female,Another country,east north central div,111
+48,female,Another country,west north central div,29
+48,female,Another country,south atlantic division,224
+48,female,Another country,east south central div,29
+48,female,Another country,west south central div,222
+48,female,Another country,mountain division,95
+48,female,Another country,pacific division,469
+48,female,The United States,new england division,18
+48,female,The United States,middle atlantic division,43
+48,female,The United States,east north central div,11
+48,female,The United States,west north central div,4
+48,female,The United States,south atlantic division,72
+48,female,The United States,east south central div,4
+48,female,The United States,west south central div,31
+48,female,The United States,mountain division,4
+48,female,The United States,pacific division,60
+49,male,Another country,new england division,47
+49,male,Another country,middle atlantic division,172
+49,male,Another country,east north central div,121
+49,male,Another country,west north central div,17
+49,male,Another country,south atlantic division,219
+49,male,Another country,east south central div,33
+49,male,Another country,west south central div,211
+49,male,Another country,mountain division,105
+49,male,Another country,pacific division,416
+49,male,The United States,new england division,13
+49,male,The United States,middle atlantic division,50
+49,male,The United States,east north central div,8
+49,male,The United States,west north central div,4
+49,male,The United States,south atlantic division,74
+49,male,The United States,east south central div,7
+49,male,The United States,west south central div,32
+49,male,The United States,mountain division,10
+49,male,The United States,pacific division,68
+49,female,Another country,new england division,46
+49,female,Another country,middle atlantic division,152
+49,female,Another country,east north central div,113
+49,female,Another country,west north central div,40
+49,female,Another country,south atlantic division,211
+49,female,Another country,east south central div,30
+49,female,Another country,west south central div,221
+49,female,Another country,mountain division,101
+49,female,Another country,pacific division,440
+49,female,The United States,new england division,8
+49,female,The United States,middle atlantic division,37
+49,female,The United States,east north central div,5
+49,female,The United States,west north central div,1
+49,female,The United States,south atlantic division,91
+49,female,The United States,east south central div,9
+49,female,The United States,west south central div,32
+49,female,The United States,mountain division,13
+49,female,The United States,pacific division,50
+50,male,Another country,new england division,39
+50,male,Another country,middle atlantic division,161
+50,male,Another country,east north central div,88
+50,male,Another country,west north central div,37
+50,male,Another country,south atlantic division,257
+50,male,Another country,east south central div,26
+50,male,Another country,west south central div,205
+50,male,Another country,mountain division,101
+50,male,Another country,pacific division,446
+50,male,The United States,new england division,20
+50,male,The United States,middle atlantic division,44
+50,male,The United States,east north central div,3
+50,male,The United States,west north central div,4
+50,male,The United States,south atlantic division,83
+50,male,The United States,east south central div,3
+50,male,The United States,west south central div,30
+50,male,The United States,mountain division,13
+50,male,The United States,pacific division,56
+50,female,Another country,new england division,41
+50,female,Another country,middle atlantic division,157
+50,female,Another country,east north central div,105
+50,female,Another country,west north central div,27
+50,female,Another country,south atlantic division,223
+50,female,Another country,east south central div,26
+50,female,Another country,west south central div,210
+50,female,Another country,mountain division,107
+50,female,Another country,pacific division,458
+50,female,The United States,new england division,15
+50,female,The United States,middle atlantic division,37
+50,female,The United States,east north central div,8
+50,female,The United States,south atlantic division,78
+50,female,The United States,east south central div,2
+50,female,The United States,west south central div,38
+50,female,The United States,mountain division,17
+50,female,The United States,pacific division,56
+51,male,Another country,new england division,40
+51,male,Another country,middle atlantic division,161
+51,male,Another country,east north central div,76
+51,male,Another country,west north central div,28
+51,male,Another country,south atlantic division,204
+51,male,Another country,east south central div,23
+51,male,Another country,west south central div,208
+51,male,Another country,mountain division,86
+51,male,Another country,pacific division,447
+51,male,The United States,new england division,13
+51,male,The United States,middle atlantic division,35
+51,male,The United States,east north central div,11
+51,male,The United States,west north central div,4
+51,male,The United States,south atlantic division,59
+51,male,The United States,east south central div,3
+51,male,The United States,west south central div,22
+51,male,The United States,mountain division,5
+51,male,The United States,pacific division,51
+51,female,Another country,new england division,36
+51,female,Another country,middle atlantic division,165
+51,female,Another country,east north central div,70
+51,female,Another country,west north central div,25
+51,female,Another country,south atlantic division,205
+51,female,Another country,east south central div,23
+51,female,Another country,west south central div,207
+51,female,Another country,mountain division,105
+51,female,Another country,pacific division,477
+51,female,The United States,new england division,9
+51,female,The United States,middle atlantic division,41
+51,female,The United States,east north central div,9
+51,female,The United States,west north central div,3
+51,female,The United States,south atlantic division,83
+51,female,The United States,east south central div,2
+51,female,The United States,west south central div,28
+51,female,The United States,mountain division,6
+51,female,The United States,pacific division,54
+52,male,Another country,new england division,41
+52,male,Another country,middle atlantic division,182
+52,male,Another country,east north central div,119
+52,male,Another country,west north central div,27
+52,male,Another country,south atlantic division,192
+52,male,Another country,east south central div,17
+52,male,Another country,west south central div,218
+52,male,Another country,mountain division,103
+52,male,Another country,pacific division,394
+52,male,The United States,new england division,14
+52,male,The United States,middle atlantic division,49
+52,male,The United States,east north central div,6
+52,male,The United States,west north central div,1
+52,male,The United States,south atlantic division,62
+52,male,The United States,east south central div,6
+52,male,The United States,west south central div,32
+52,male,The United States,mountain division,4
+52,male,The United States,pacific division,51
+52,female,Another country,new england division,36
+52,female,Another country,middle atlantic division,166
+52,female,Another country,east north central div,99
+52,female,Another country,west north central div,37
+52,female,Another country,south atlantic division,186
+52,female,Another country,east south central div,16
+52,female,Another country,west south central div,209
+52,female,Another country,mountain division,92
+52,female,Another country,pacific division,434
+52,female,The United States,new england division,13
+52,female,The United States,middle atlantic division,37
+52,female,The United States,east north central div,8
+52,female,The United States,west north central div,3
+52,female,The United States,south atlantic division,83
+52,female,The United States,east south central div,7
+52,female,The United States,west south central div,23
+52,female,The United States,mountain division,11
+52,female,The United States,pacific division,70
+53,male,Another country,new england division,31
+53,male,Another country,middle atlantic division,128
+53,male,Another country,east north central div,77
+53,male,Another country,west north central div,25
+53,male,Another country,south atlantic division,155
+53,male,Another country,east south central div,19
+53,male,Another country,west south central div,167
+53,male,Another country,mountain division,79
+53,male,Another country,pacific division,380
+53,male,The United States,new england division,9
+53,male,The United States,middle atlantic division,40
+53,male,The United States,east north central div,9
+53,male,The United States,west north central div,1
+53,male,The United States,south atlantic division,63
+53,male,The United States,east south central div,1
+53,male,The United States,west south central div,21
+53,male,The United States,mountain division,9
+53,male,The United States,pacific division,64
+53,female,Another country,new england division,36
+53,female,Another country,middle atlantic division,135
+53,female,Another country,east north central div,88
+53,female,Another country,west north central div,26
+53,female,Another country,south atlantic division,176
+53,female,Another country,east south central div,19
+53,female,Another country,west south central div,183
+53,female,Another country,mountain division,89
+53,female,Another country,pacific division,392
+53,female,The United States,new england division,19
+53,female,The United States,middle atlantic division,41
+53,female,The United States,east north central div,6
+53,female,The United States,west north central div,3
+53,female,The United States,south atlantic division,65
+53,female,The United States,east south central div,3
+53,female,The United States,west south central div,32
+53,female,The United States,mountain division,9
+53,female,The United States,pacific division,43
+54,male,Another country,new england division,34
+54,male,Another country,middle atlantic division,122
+54,male,Another country,east north central div,69
+54,male,Another country,west north central div,25
+54,male,Another country,south atlantic division,154
+54,male,Another country,east south central div,13
+54,male,Another country,west south central div,199
+54,male,Another country,mountain division,80
+54,male,Another country,pacific division,397
+54,male,The United States,new england division,7
+54,male,The United States,middle atlantic division,24
+54,male,The United States,east north central div,15
+54,male,The United States,west north central div,2
+54,male,The United States,south atlantic division,53
+54,male,The United States,east south central div,4
+54,male,The United States,west south central div,29
+54,male,The United States,mountain division,7
+54,male,The United States,pacific division,50
+54,female,Another country,new england division,44
+54,female,Another country,middle atlantic division,164
+54,female,Another country,east north central div,78
+54,female,Another country,west north central div,24
+54,female,Another country,south atlantic division,184
+54,female,Another country,east south central div,18
+54,female,Another country,west south central div,203
+54,female,Another country,mountain division,78
+54,female,Another country,pacific division,393
+54,female,The United States,new england division,11
+54,female,The United States,middle atlantic division,40
+54,female,The United States,east north central div,5
+54,female,The United States,west north central div,4
+54,female,The United States,south atlantic division,61
+54,female,The United States,east south central div,3
+54,female,The United States,west south central div,21
+54,female,The United States,mountain division,7
+54,female,The United States,pacific division,63
+55,male,Another country,new england division,38
+55,male,Another country,middle atlantic division,147
+55,male,Another country,east north central div,85
+55,male,Another country,west north central div,19
+55,male,Another country,south atlantic division,172
+55,male,Another country,east south central div,13
+55,male,Another country,west south central div,153
+55,male,Another country,mountain division,87
+55,male,Another country,pacific division,371
+55,male,The United States,new england division,12
+55,male,The United States,middle atlantic division,42
+55,male,The United States,east north central div,5
+55,male,The United States,west north central div,1
+55,male,The United States,south atlantic division,61
+55,male,The United States,east south central div,2
+55,male,The United States,west south central div,10
+55,male,The United States,mountain division,8
+55,male,The United States,pacific division,45
+55,female,Another country,new england division,43
+55,female,Another country,middle atlantic division,162
+55,female,Another country,east north central div,89
+55,female,Another country,west north central div,15
+55,female,Another country,south atlantic division,159
+55,female,Another country,east south central div,16
+55,female,Another country,west south central div,178
+55,female,Another country,mountain division,86
+55,female,Another country,pacific division,362
+55,female,The United States,new england division,7
+55,female,The United States,middle atlantic division,40
+55,female,The United States,east north central div,3
+55,female,The United States,south atlantic division,58
+55,female,The United States,east south central div,5
+55,female,The United States,west south central div,16
+55,female,The United States,mountain division,8
+55,female,The United States,pacific division,45
+56,male,Another country,new england division,29
+56,male,Another country,middle atlantic division,126
+56,male,Another country,east north central div,78
+56,male,Another country,west north central div,27
+56,male,Another country,south atlantic division,162
+56,male,Another country,east south central div,16
+56,male,Another country,west south central div,154
+56,male,Another country,mountain division,79
+56,male,Another country,pacific division,359
+56,male,The United States,new england division,12
+56,male,The United States,middle atlantic division,28
+56,male,The United States,east north central div,3
+56,male,The United States,west north central div,3
+56,male,The United States,south atlantic division,54
+56,male,The United States,east south central div,3
+56,male,The United States,west south central div,21
+56,male,The United States,mountain division,4
+56,male,The United States,pacific division,39
+56,female,Another country,new england division,44
+56,female,Another country,middle atlantic division,152
+56,female,Another country,east north central div,69
+56,female,Another country,west north central div,18
+56,female,Another country,south atlantic division,184
+56,female,Another country,east south central div,8
+56,female,Another country,west south central div,161
+56,female,Another country,mountain division,78
+56,female,Another country,pacific division,374
+56,female,The United States,new england division,9
+56,female,The United States,middle atlantic division,44
+56,female,The United States,east north central div,5
+56,female,The United States,west north central div,2
+56,female,The United States,south atlantic division,64
+56,female,The United States,east south central div,1
+56,female,The United States,west south central div,12
+56,female,The United States,mountain division,9
+56,female,The United States,pacific division,47
+57,male,Another country,new england division,36
+57,male,Another country,middle atlantic division,139
+57,male,Another country,east north central div,72
+57,male,Another country,west north central div,19
+57,male,Another country,south atlantic division,164
+57,male,Another country,east south central div,17
+57,male,Another country,west south central div,195
+57,male,Another country,mountain division,66
+57,male,Another country,pacific division,343
+57,male,The United States,new england division,8
+57,male,The United States,middle atlantic division,31
+57,male,The United States,east north central div,4
+57,male,The United States,west north central div,3
+57,male,The United States,south atlantic division,38
+57,male,The United States,east south central div,1
+57,male,The United States,west south central div,15
+57,male,The United States,mountain division,5
+57,male,The United States,pacific division,35
+57,female,Another country,new england division,36
+57,female,Another country,middle atlantic division,155
+57,female,Another country,east north central div,83
+57,female,Another country,west north central div,13
+57,female,Another country,south atlantic division,168
+57,female,Another country,east south central div,10
+57,female,Another country,west south central div,155
+57,female,Another country,mountain division,63
+57,female,Another country,pacific division,390
+57,female,The United States,new england division,6
+57,female,The United States,middle atlantic division,27
+57,female,The United States,east north central div,4
+57,female,The United States,west north central div,2
+57,female,The United States,south atlantic division,61
+57,female,The United States,east south central div,1
+57,female,The United States,west south central div,19
+57,female,The United States,mountain division,8
+57,female,The United States,pacific division,54
+58,male,Another country,new england division,28
+58,male,Another country,middle atlantic division,116
+58,male,Another country,east north central div,77
+58,male,Another country,west north central div,14
+58,male,Another country,south atlantic division,129
+58,male,Another country,east south central div,19
+58,male,Another country,west south central div,147
+58,male,Another country,mountain division,77
+58,male,Another country,pacific division,304
+58,male,The United States,new england division,9
+58,male,The United States,middle atlantic division,32
+58,male,The United States,east north central div,2
+58,male,The United States,west north central div,1
+58,male,The United States,south atlantic division,48
+58,male,The United States,east south central div,3
+58,male,The United States,west south central div,12
+58,male,The United States,mountain division,6
+58,male,The United States,pacific division,31
+58,female,Another country,new england division,22
+58,female,Another country,middle atlantic division,135
+58,female,Another country,east north central div,56
+58,female,Another country,west north central div,9
+58,female,Another country,south atlantic division,144
+58,female,Another country,east south central div,12
+58,female,Another country,west south central div,155
+58,female,Another country,mountain division,65
+58,female,Another country,pacific division,314
+58,female,The United States,new england division,10
+58,female,The United States,middle atlantic division,35
+58,female,The United States,east north central div,7
+58,female,The United States,west north central div,1
+58,female,The United States,south atlantic division,69
+58,female,The United States,east south central div,1
+58,female,The United States,west south central div,8
+58,female,The United States,mountain division,1
+58,female,The United States,pacific division,27
+59,male,Another country,new england division,22
+59,male,Another country,middle atlantic division,114
+59,male,Another country,east north central div,63
+59,male,Another country,west north central div,14
+59,male,Another country,south atlantic division,128
+59,male,Another country,east south central div,13
+59,male,Another country,west south central div,115
+59,male,Another country,mountain division,48
+59,male,Another country,pacific division,287
+59,male,The United States,new england division,7
+59,male,The United States,middle atlantic division,20
+59,male,The United States,east north central div,6
+59,male,The United States,south atlantic division,40
+59,male,The United States,east south central div,1
+59,male,The United States,west south central div,13
+59,male,The United States,mountain division,4
+59,male,The United States,pacific division,35
+59,female,Another country,new england division,39
+59,female,Another country,middle atlantic division,125
+59,female,Another country,east north central div,67
+59,female,Another country,west north central div,15
+59,female,Another country,south atlantic division,145
+59,female,Another country,east south central div,16
+59,female,Another country,west south central div,130
+59,female,Another country,mountain division,68
+59,female,Another country,pacific division,280
+59,female,The United States,new england division,9
+59,female,The United States,middle atlantic division,23
+59,female,The United States,east north central div,3
+59,female,The United States,west north central div,3
+59,female,The United States,south atlantic division,47
+59,female,The United States,west south central div,18
+59,female,The United States,mountain division,10
+59,female,The United States,pacific division,29
+60,male,Another country,new england division,34
+60,male,Another country,middle atlantic division,104
+60,male,Another country,east north central div,48
+60,male,Another country,west north central div,17
+60,male,Another country,south atlantic division,124
+60,male,Another country,east south central div,14
+60,male,Another country,west south central div,148
+60,male,Another country,mountain division,47
+60,male,Another country,pacific division,283
+60,male,The United States,new england division,13
+60,male,The United States,middle atlantic division,29
+60,male,The United States,east north central div,5
+60,male,The United States,west north central div,1
+60,male,The United States,south atlantic division,35
+60,male,The United States,east south central div,1
+60,male,The United States,west south central div,15
+60,male,The United States,mountain division,7
+60,male,The United States,pacific division,31
+60,female,Another country,new england division,34
+60,female,Another country,middle atlantic division,122
+60,female,Another country,east north central div,57
+60,female,Another country,west north central div,18
+60,female,Another country,south atlantic division,130
+60,female,Another country,east south central div,11
+60,female,Another country,west south central div,143
+60,female,Another country,mountain division,62
+60,female,Another country,pacific division,304
+60,female,The United States,new england division,4
+60,female,The United States,middle atlantic division,35
+60,female,The United States,east north central div,2
+60,female,The United States,west north central div,1
+60,female,The United States,south atlantic division,59
+60,female,The United States,east south central div,2
+60,female,The United States,west south central div,13
+60,female,The United States,mountain division,2
+60,female,The United States,pacific division,42
+61,male,Another country,new england division,25
+61,male,Another country,middle atlantic division,107
+61,male,Another country,east north central div,46
+61,male,Another country,west north central div,21
+61,male,Another country,south atlantic division,122
+61,male,Another country,east south central div,12
+61,male,Another country,west south central div,127
+61,male,Another country,mountain division,47
+61,male,Another country,pacific division,273
+61,male,The United States,new england division,9
+61,male,The United States,middle atlantic division,31
+61,male,The United States,east north central div,5
+61,male,The United States,west north central div,2
+61,male,The United States,south atlantic division,33
+61,male,The United States,east south central div,1
+61,male,The United States,west south central div,10
+61,male,The United States,mountain division,5
+61,male,The United States,pacific division,28
+61,female,Another country,new england division,25
+61,female,Another country,middle atlantic division,104
+61,female,Another country,east north central div,55
+61,female,Another country,west north central div,12
+61,female,Another country,south atlantic division,129
+61,female,Another country,east south central div,13
+61,female,Another country,west south central div,120
+61,female,Another country,mountain division,63
+61,female,Another country,pacific division,273
+61,female,The United States,new england division,4
+61,female,The United States,middle atlantic division,25
+61,female,The United States,east north central div,3
+61,female,The United States,south atlantic division,35
+61,female,The United States,east south central div,2
+61,female,The United States,west south central div,11
+61,female,The United States,mountain division,10
+61,female,The United States,pacific division,35
+62,male,Another country,new england division,27
+62,male,Another country,middle atlantic division,103
+62,male,Another country,east north central div,67
+62,male,Another country,west north central div,15
+62,male,Another country,south atlantic division,132
+62,male,Another country,east south central div,14
+62,male,Another country,west south central div,139
+62,male,Another country,mountain division,55
+62,male,Another country,pacific division,246
+62,male,The United States,new england division,5
+62,male,The United States,middle atlantic division,31
+62,male,The United States,east north central div,2
+62,male,The United States,south atlantic division,37
+62,male,The United States,east south central div,1
+62,male,The United States,west south central div,16
+62,male,The United States,mountain division,5
+62,male,The United States,pacific division,34
+62,female,Another country,new england division,26
+62,female,Another country,middle atlantic division,112
+62,female,Another country,east north central div,59
+62,female,Another country,west north central div,8
+62,female,Another country,south atlantic division,133
+62,female,Another country,east south central div,5
+62,female,Another country,west south central div,126
+62,female,Another country,mountain division,57
+62,female,Another country,pacific division,271
+62,female,The United States,new england division,7
+62,female,The United States,middle atlantic division,32
+62,female,The United States,east north central div,6
+62,female,The United States,west north central div,2
+62,female,The United States,south atlantic division,38
+62,female,The United States,east south central div,3
+62,female,The United States,west south central div,11
+62,female,The United States,mountain division,6
+62,female,The United States,pacific division,40
+63,male,Another country,new england division,23
+63,male,Another country,middle atlantic division,82
+63,male,Another country,east north central div,49
+63,male,Another country,west north central div,11
+63,male,Another country,south atlantic division,119
+63,male,Another country,east south central div,12
+63,male,Another country,west south central div,103
+63,male,Another country,mountain division,54
+63,male,Another country,pacific division,236
+63,male,The United States,new england division,3
+63,male,The United States,middle atlantic division,22
+63,male,The United States,east north central div,3
+63,male,The United States,west north central div,2
+63,male,The United States,south atlantic division,29
+63,male,The United States,east south central div,4
+63,male,The United States,west south central div,11
+63,male,The United States,mountain division,3
+63,male,The United States,pacific division,18
+63,female,Another country,new england division,21
+63,female,Another country,middle atlantic division,94
+63,female,Another country,east north central div,60
+63,female,Another country,west north central div,13
+63,female,Another country,south atlantic division,122
+63,female,Another country,east south central div,8
+63,female,Another country,west south central div,105
+63,female,Another country,mountain division,48
+63,female,Another country,pacific division,247
+63,female,The United States,new england division,4
+63,female,The United States,middle atlantic division,22
+63,female,The United States,east north central div,3
+63,female,The United States,west north central div,1
+63,female,The United States,south atlantic division,38
+63,female,The United States,west south central div,15
+63,female,The United States,mountain division,6
+63,female,The United States,pacific division,33
+64,male,Another country,new england division,34
+64,male,Another country,middle atlantic division,93
+64,male,Another country,east north central div,42
+64,male,Another country,west north central div,9
+64,male,Another country,south atlantic division,109
+64,male,Another country,east south central div,9
+64,male,Another country,west south central div,104
+64,male,Another country,mountain division,31
+64,male,Another country,pacific division,245
+64,male,The United States,new england division,2
+64,male,The United States,middle atlantic division,19
+64,male,The United States,east north central div,4
+64,male,The United States,south atlantic division,35
+64,male,The United States,west south central div,7
+64,male,The United States,mountain division,7
+64,male,The United States,pacific division,20
+64,female,Another country,new england division,33
+64,female,Another country,middle atlantic division,108
+64,female,Another country,east north central div,46
+64,female,Another country,west north central div,11
+64,female,Another country,south atlantic division,110
+64,female,Another country,east south central div,11
+64,female,Another country,west south central div,117
+64,female,Another country,mountain division,65
+64,female,Another country,pacific division,244
+64,female,The United States,new england division,6
+64,female,The United States,middle atlantic division,34
+64,female,The United States,east north central div,4
+64,female,The United States,west north central div,1
+64,female,The United States,south atlantic division,41
+64,female,The United States,east south central div,1
+64,female,The United States,west south central div,11
+64,female,The United States,mountain division,7
+64,female,The United States,pacific division,30
+65,male,Another country,new england division,24
+65,male,Another country,middle atlantic division,92
+65,male,Another country,east north central div,50
+65,male,Another country,west north central div,11
+65,male,Another country,south atlantic division,99
+65,male,Another country,east south central div,4
+65,male,Another country,west south central div,100
+65,male,Another country,mountain division,63
+65,male,Another country,pacific division,219
+65,male,The United States,new england division,3
+65,male,The United States,middle atlantic division,20
+65,male,The United States,east north central div,3
+65,male,The United States,south atlantic division,34
+65,male,The United States,west south central div,9
+65,male,The United States,mountain division,1
+65,male,The United States,pacific division,29
+65,female,Another country,new england division,24
+65,female,Another country,middle atlantic division,105
+65,female,Another country,east north central div,48
+65,female,Another country,west north central div,13
+65,female,Another country,south atlantic division,124
+65,female,Another country,east south central div,12
+65,female,Another country,west south central div,95
+65,female,Another country,mountain division,60
+65,female,Another country,pacific division,245
+65,female,The United States,new england division,4
+65,female,The United States,middle atlantic division,23
+65,female,The United States,east north central div,1
+65,female,The United States,west north central div,1
+65,female,The United States,south atlantic division,46
+65,female,The United States,west south central div,14
+65,female,The United States,mountain division,8
+65,female,The United States,pacific division,30
+66,male,Another country,new england division,20
+66,male,Another country,middle atlantic division,77
+66,male,Another country,east north central div,35
+66,male,Another country,west north central div,9
+66,male,Another country,south atlantic division,96
+66,male,Another country,east south central div,10
+66,male,Another country,west south central div,93
+66,male,Another country,mountain division,47
+66,male,Another country,pacific division,178
+66,male,The United States,new england division,7
+66,male,The United States,middle atlantic division,23
+66,male,The United States,east north central div,1
+66,male,The United States,west north central div,1
+66,male,The United States,south atlantic division,27
+66,male,The United States,west south central div,8
+66,male,The United States,mountain division,4
+66,male,The United States,pacific division,23
+66,female,Another country,new england division,23
+66,female,Another country,middle atlantic division,87
+66,female,Another country,east north central div,50
+66,female,Another country,west north central div,13
+66,female,Another country,south atlantic division,109
+66,female,Another country,east south central div,9
+66,female,Another country,west south central div,111
+66,female,Another country,mountain division,61
+66,female,Another country,pacific division,170
+66,female,The United States,new england division,4
+66,female,The United States,middle atlantic division,9
+66,female,The United States,east north central div,2
+66,female,The United States,west north central div,1
+66,female,The United States,south atlantic division,33
+66,female,The United States,west south central div,13
+66,female,The United States,mountain division,5
+66,female,The United States,pacific division,23
+67,male,Another country,new england division,20
+67,male,Another country,middle atlantic division,76
+67,male,Another country,east north central div,37
+67,male,Another country,west north central div,8
+67,male,Another country,south atlantic division,92
+67,male,Another country,east south central div,2
+67,male,Another country,west south central div,92
+67,male,Another country,mountain division,30
+67,male,Another country,pacific division,182
+67,male,The United States,new england division,5
+67,male,The United States,middle atlantic division,19
+67,male,The United States,east north central div,2
+67,male,The United States,south atlantic division,18
+67,male,The United States,east south central div,3
+67,male,The United States,west south central div,13
+67,male,The United States,mountain division,2
+67,male,The United States,pacific division,19
+67,female,Another country,new england division,35
+67,female,Another country,middle atlantic division,84
+67,female,Another country,east north central div,35
+67,female,Another country,west north central div,9
+67,female,Another country,south atlantic division,90
+67,female,Another country,east south central div,11
+67,female,Another country,west south central div,113
+67,female,Another country,mountain division,28
+67,female,Another country,pacific division,192
+67,female,The United States,new england division,2
+67,female,The United States,middle atlantic division,24
+67,female,The United States,east north central div,3
+67,female,The United States,south atlantic division,26
+67,female,The United States,east south central div,3
+67,female,The United States,west south central div,11
+67,female,The United States,mountain division,3
+67,female,The United States,pacific division,31
+68,male,Another country,new england division,27
+68,male,Another country,middle atlantic division,67
+68,male,Another country,east north central div,35
+68,male,Another country,west north central div,8
+68,male,Another country,south atlantic division,97
+68,male,Another country,east south central div,7
+68,male,Another country,west south central div,80
+68,male,Another country,mountain division,32
+68,male,Another country,pacific division,162
+68,male,The United States,new england division,4
+68,male,The United States,middle atlantic division,16
+68,male,The United States,east north central div,3
+68,male,The United States,west north central div,1
+68,male,The United States,south atlantic division,15
+68,male,The United States,west south central div,9
+68,male,The United States,mountain division,6
+68,male,The United States,pacific division,12
+68,female,Another country,new england division,33
+68,female,Another country,middle atlantic division,62
+68,female,Another country,east north central div,46
+68,female,Another country,west north central div,11
+68,female,Another country,south atlantic division,91
+68,female,Another country,east south central div,11
+68,female,Another country,west south central div,82
+68,female,Another country,mountain division,39
+68,female,Another country,pacific division,199
+68,female,The United States,new england division,6
+68,female,The United States,middle atlantic division,15
+68,female,The United States,east north central div,4
+68,female,The United States,west north central div,1
+68,female,The United States,south atlantic division,23
+68,female,The United States,west south central div,9
+68,female,The United States,mountain division,4
+68,female,The United States,pacific division,14
+69,male,Another country,new england division,22
+69,male,Another country,middle atlantic division,56
+69,male,Another country,east north central div,32
+69,male,Another country,west north central div,6
+69,male,Another country,south atlantic division,67
+69,male,Another country,east south central div,4
+69,male,Another country,west south central div,70
+69,male,Another country,mountain division,35
+69,male,Another country,pacific division,157
+69,male,The United States,new england division,1
+69,male,The United States,middle atlantic division,12
+69,male,The United States,south atlantic division,16
+69,male,The United States,east south central div,1
+69,male,The United States,west south central div,13
+69,male,The United States,mountain division,3
+69,male,The United States,pacific division,20
+69,female,Another country,new england division,16
+69,female,Another country,middle atlantic division,72
+69,female,Another country,east north central div,41
+69,female,Another country,west north central div,7
+69,female,Another country,south atlantic division,105
+69,female,Another country,east south central div,10
+69,female,Another country,west south central div,77
+69,female,Another country,mountain division,27
+69,female,Another country,pacific division,178
+69,female,The United States,new england division,3
+69,female,The United States,middle atlantic division,13
+69,female,The United States,east north central div,2
+69,female,The United States,west north central div,2
+69,female,The United States,south atlantic division,28
+69,female,The United States,east south central div,2
+69,female,The United States,west south central div,8
+69,female,The United States,mountain division,4
+69,female,The United States,pacific division,23
+70,male,Another country,new england division,19
+70,male,Another country,middle atlantic division,55
+70,male,Another country,east north central div,32
+70,male,Another country,west north central div,8
+70,male,Another country,south atlantic division,95
+70,male,Another country,east south central div,6
+70,male,Another country,west south central div,62
+70,male,Another country,mountain division,32
+70,male,Another country,pacific division,126
+70,male,The United States,new england division,4
+70,male,The United States,middle atlantic division,10
+70,male,The United States,east north central div,1
+70,male,The United States,west north central div,1
+70,male,The United States,south atlantic division,20
+70,male,The United States,east south central div,1
+70,male,The United States,west south central div,7
+70,male,The United States,mountain division,2
+70,male,The United States,pacific division,14
+70,female,Another country,new england division,26
+70,female,Another country,middle atlantic division,61
+70,female,Another country,east north central div,35
+70,female,Another country,west north central div,8
+70,female,Another country,south atlantic division,117
+70,female,Another country,east south central div,3
+70,female,Another country,west south central div,76
+70,female,Another country,mountain division,45
+70,female,Another country,pacific division,164
+70,female,The United States,new england division,3
+70,female,The United States,middle atlantic division,12
+70,female,The United States,south atlantic division,19
+70,female,The United States,east south central div,1
+70,female,The United States,west south central div,7
+70,female,The United States,mountain division,5
+70,female,The United States,pacific division,11
+71,male,Another country,new england division,16
+71,male,Another country,middle atlantic division,48
+71,male,Another country,east north central div,23
+71,male,Another country,west north central div,6
+71,male,Another country,south atlantic division,70
+71,male,Another country,east south central div,1
+71,male,Another country,west south central div,59
+71,male,Another country,mountain division,29
+71,male,Another country,pacific division,144
+71,male,The United States,new england division,2
+71,male,The United States,middle atlantic division,7
+71,male,The United States,south atlantic division,15
+71,male,The United States,east south central div,1
+71,male,The United States,west south central div,7
+71,male,The United States,mountain division,1
+71,male,The United States,pacific division,12
+71,female,Another country,new england division,16
+71,female,Another country,middle atlantic division,60
+71,female,Another country,east north central div,28
+71,female,Another country,west north central div,10
+71,female,Another country,south atlantic division,99
+71,female,Another country,east south central div,4
+71,female,Another country,west south central div,67
+71,female,Another country,mountain division,41
+71,female,Another country,pacific division,160
+71,female,The United States,new england division,1
+71,female,The United States,middle atlantic division,11
+71,female,The United States,east north central div,1
+71,female,The United States,south atlantic division,17
+71,female,The United States,east south central div,1
+71,female,The United States,west south central div,10
+71,female,The United States,mountain division,1
+71,female,The United States,pacific division,16
+72,male,Another country,new england division,17
+72,male,Another country,middle atlantic division,59
+72,male,Another country,east north central div,23
+72,male,Another country,west north central div,5
+72,male,Another country,south atlantic division,73
+72,male,Another country,east south central div,1
+72,male,Another country,west south central div,51
+72,male,Another country,mountain division,26
+72,male,Another country,pacific division,133
+72,male,The United States,new england division,4
+72,male,The United States,middle atlantic division,7
+72,male,The United States,east north central div,2
+72,male,The United States,south atlantic division,15
+72,male,The United States,east south central div,1
+72,male,The United States,west south central div,1
+72,male,The United States,mountain division,1
+72,male,The United States,pacific division,11
+72,female,Another country,new england division,20
+72,female,Another country,middle atlantic division,69
+72,female,Another country,east north central div,39
+72,female,Another country,west north central div,5
+72,female,Another country,south atlantic division,88
+72,female,Another country,east south central div,5
+72,female,Another country,west south central div,64
+72,female,Another country,mountain division,32
+72,female,Another country,pacific division,135
+72,female,The United States,new england division,3
+72,female,The United States,middle atlantic division,18
+72,female,The United States,east north central div,2
+72,female,The United States,west north central div,1
+72,female,The United States,south atlantic division,28
+72,female,The United States,east south central div,2
+72,female,The United States,west south central div,6
+72,female,The United States,mountain division,2
+72,female,The United States,pacific division,16
+73,male,Another country,new england division,8
+73,male,Another country,middle atlantic division,40
+73,male,Another country,east north central div,31
+73,male,Another country,west north central div,4
+73,male,Another country,south atlantic division,87
+73,male,Another country,east south central div,8
+73,male,Another country,west south central div,54
+73,male,Another country,mountain division,26
+73,male,Another country,pacific division,122
+73,male,The United States,new england division,2
+73,male,The United States,middle atlantic division,7
+73,male,The United States,east north central div,2
+73,male,The United States,south atlantic division,6
+73,male,The United States,west south central div,1
+73,male,The United States,mountain division,3
+73,male,The United States,pacific division,2
+73,female,Another country,new england division,18
+73,female,Another country,middle atlantic division,59
+73,female,Another country,east north central div,44
+73,female,Another country,west north central div,6
+73,female,Another country,south atlantic division,82
+73,female,Another country,east south central div,8
+73,female,Another country,west south central div,50
+73,female,Another country,mountain division,33
+73,female,Another country,pacific division,127
+73,female,The United States,new england division,6
+73,female,The United States,middle atlantic division,9
+73,female,The United States,east north central div,5
+73,female,The United States,south atlantic division,22
+73,female,The United States,east south central div,1
+73,female,The United States,west south central div,3
+73,female,The United States,mountain division,1
+73,female,The United States,pacific division,11
+74,male,Another country,new england division,12
+74,male,Another country,middle atlantic division,42
+74,male,Another country,east north central div,24
+74,male,Another country,west north central div,6
+74,male,Another country,south atlantic division,66
+74,male,Another country,east south central div,1
+74,male,Another country,west south central div,52
+74,male,Another country,mountain division,23
+74,male,Another country,pacific division,96
+74,male,The United States,new england division,1
+74,male,The United States,middle atlantic division,1
+74,male,The United States,east north central div,1
+74,male,The United States,west north central div,1
+74,male,The United States,south atlantic division,7
+74,male,The United States,west south central div,1
+74,male,The United States,pacific division,8
+74,female,Another country,new england division,23
+74,female,Another country,middle atlantic division,55
+74,female,Another country,east north central div,28
+74,female,Another country,west north central div,5
+74,female,Another country,south atlantic division,79
+74,female,Another country,east south central div,2
+74,female,Another country,west south central div,49
+74,female,Another country,mountain division,32
+74,female,Another country,pacific division,122
+74,female,The United States,new england division,2
+74,female,The United States,middle atlantic division,17
+74,female,The United States,east north central div,1
+74,female,The United States,west north central div,1
+74,female,The United States,south atlantic division,24
+74,female,The United States,west south central div,4
+74,female,The United States,mountain division,1
+74,female,The United States,pacific division,8
+75,male,Another country,new england division,6
+75,male,Another country,middle atlantic division,46
+75,male,Another country,east north central div,30
+75,male,Another country,west north central div,4
+75,male,Another country,south atlantic division,47
+75,male,Another country,east south central div,3
+75,male,Another country,west south central div,38
+75,male,Another country,mountain division,14
+75,male,Another country,pacific division,91
+75,male,The United States,new england division,1
+75,male,The United States,middle atlantic division,7
+75,male,The United States,east north central div,1
+75,male,The United States,south atlantic division,7
+75,male,The United States,east south central div,2
+75,male,The United States,west south central div,3
+75,male,The United States,mountain division,1
+75,male,The United States,pacific division,9
+75,female,Another country,new england division,18
+75,female,Another country,middle atlantic division,50
+75,female,Another country,east north central div,26
+75,female,Another country,west north central div,6
+75,female,Another country,south atlantic division,70
+75,female,Another country,east south central div,8
+75,female,Another country,west south central div,43
+75,female,Another country,mountain division,26
+75,female,Another country,pacific division,101
+75,female,The United States,new england division,1
+75,female,The United States,middle atlantic division,11
+75,female,The United States,south atlantic division,15
+75,female,The United States,east south central div,1
+75,female,The United States,west south central div,3
+75,female,The United States,mountain division,2
+75,female,The United States,pacific division,12
+76,male,Another country,new england division,8
+76,male,Another country,middle atlantic division,37
+76,male,Another country,east north central div,24
+76,male,Another country,west north central div,4
+76,male,Another country,south atlantic division,59
+76,male,Another country,east south central div,1
+76,male,Another country,west south central div,32
+76,male,Another country,mountain division,26
+76,male,Another country,pacific division,82
+76,male,The United States,new england division,2
+76,male,The United States,middle atlantic division,3
+76,male,The United States,south atlantic division,16
+76,male,The United States,west south central div,3
+76,male,The United States,pacific division,5
+76,female,Another country,new england division,15
+76,female,Another country,middle atlantic division,46
+76,female,Another country,east north central div,26
+76,female,Another country,west north central div,7
+76,female,Another country,south atlantic division,48
+76,female,Another country,east south central div,3
+76,female,Another country,west south central div,54
+76,female,Another country,mountain division,25
+76,female,Another country,pacific division,116
+76,female,The United States,middle atlantic division,6
+76,female,The United States,east north central div,2
+76,female,The United States,south atlantic division,16
+76,female,The United States,west south central div,5
+76,female,The United States,mountain division,2
+76,female,The United States,pacific division,7
+77,male,Another country,new england division,13
+77,male,Another country,middle atlantic division,30
+77,male,Another country,east north central div,19
+77,male,Another country,west north central div,2
+77,male,Another country,south atlantic division,46
+77,male,Another country,east south central div,2
+77,male,Another country,west south central div,27
+77,male,Another country,mountain division,22
+77,male,Another country,pacific division,74
+77,male,The United States,new england division,1
+77,male,The United States,middle atlantic division,3
+77,male,The United States,east north central div,1
+77,male,The United States,south atlantic division,8
+77,male,The United States,east south central div,1
+77,male,The United States,west south central div,5
+77,male,The United States,pacific division,1
+77,female,Another country,new england division,17
+77,female,Another country,middle atlantic division,50
+77,female,Another country,east north central div,25
+77,female,Another country,west north central div,6
+77,female,Another country,south atlantic division,60
+77,female,Another country,east south central div,6
+77,female,Another country,west south central div,44
+77,female,Another country,mountain division,17
+77,female,Another country,pacific division,89
+77,female,The United States,new england division,2
+77,female,The United States,middle atlantic division,6
+77,female,The United States,south atlantic division,16
+77,female,The United States,west south central div,2
+77,female,The United States,mountain division,2
+77,female,The United States,pacific division,10
+78,male,Another country,new england division,11
+78,male,Another country,middle atlantic division,26
+78,male,Another country,east north central div,22
+78,male,Another country,south atlantic division,46
+78,male,Another country,east south central div,2
+78,male,Another country,west south central div,32
+78,male,Another country,mountain division,18
+78,male,Another country,pacific division,54
+78,male,The United States,new england division,2
+78,male,The United States,middle atlantic division,4
+78,male,The United States,east north central div,1
+78,male,The United States,south atlantic division,9
+78,male,The United States,west south central div,4
+78,male,The United States,pacific division,3
+78,female,Another country,new england division,14
+78,female,Another country,middle atlantic division,41
+78,female,Another country,east north central div,26
+78,female,Another country,west north central div,1
+78,female,Another country,south atlantic division,47
+78,female,Another country,east south central div,4
+78,female,Another country,west south central div,41
+78,female,Another country,mountain division,21
+78,female,Another country,pacific division,78
+78,female,The United States,middle atlantic division,4
+78,female,The United States,south atlantic division,7
+78,female,The United States,west south central div,4
+78,female,The United States,mountain division,6
+78,female,The United States,pacific division,2
+79,male,Another country,new england division,9
+79,male,Another country,middle atlantic division,24
+79,male,Another country,east north central div,13
+79,male,Another country,west north central div,2
+79,male,Another country,south atlantic division,47
+79,male,Another country,east south central div,2
+79,male,Another country,west south central div,29
+79,male,Another country,mountain division,20
+79,male,Another country,pacific division,51
+79,male,The United States,new england division,1
+79,male,The United States,middle atlantic division,1
+79,male,The United States,south atlantic division,8
+79,male,The United States,west south central div,3
+79,male,The United States,mountain division,2
+79,male,The United States,pacific division,4
+79,female,Another country,new england division,12
+79,female,Another country,middle atlantic division,52
+79,female,Another country,east north central div,11
+79,female,Another country,west north central div,5
+79,female,Another country,south atlantic division,39
+79,female,Another country,east south central div,3
+79,female,Another country,west south central div,36
+79,female,Another country,mountain division,21
+79,female,Another country,pacific division,92
+79,female,The United States,middle atlantic division,4
+79,female,The United States,south atlantic division,3
+79,female,The United States,west south central div,7
+79,female,The United States,pacific division,10
+80,male,Another country,new england division,4
+80,male,Another country,middle atlantic division,22
+80,male,Another country,east north central div,16
+80,male,Another country,west north central div,4
+80,male,Another country,south atlantic division,29
+80,male,Another country,east south central div,2
+80,male,Another country,west south central div,17
+80,male,Another country,mountain division,9
+80,male,Another country,pacific division,60
+80,male,The United States,middle atlantic division,4
+80,male,The United States,east north central div,2
+80,male,The United States,south atlantic division,3
+80,male,The United States,pacific division,5
+80,female,Another country,new england division,7
+80,female,Another country,middle atlantic division,29
+80,female,Another country,east north central div,25
+80,female,Another country,west north central div,4
+80,female,Another country,south atlantic division,46
+80,female,Another country,east south central div,2
+80,female,Another country,west south central div,36
+80,female,Another country,mountain division,16
+80,female,Another country,pacific division,90
+80,female,The United States,new england division,1
+80,female,The United States,middle atlantic division,5
+80,female,The United States,east north central div,1
+80,female,The United States,south atlantic division,6
+80,female,The United States,west south central div,2
+80,female,The United States,pacific division,9
+81,male,Another country,new england division,9
+81,male,Another country,middle atlantic division,21
+81,male,Another country,east north central div,16
+81,male,Another country,west north central div,3
+81,male,Another country,south atlantic division,31
+81,male,Another country,east south central div,1
+81,male,Another country,west south central div,20
+81,male,Another country,mountain division,11
+81,male,Another country,pacific division,59
+81,male,The United States,middle atlantic division,2
+81,male,The United States,south atlantic division,7
+81,male,The United States,pacific division,4
+81,female,Another country,new england division,13
+81,female,Another country,middle atlantic division,39
+81,female,Another country,east north central div,13
+81,female,Another country,west north central div,4
+81,female,Another country,south atlantic division,40
+81,female,Another country,east south central div,4
+81,female,Another country,west south central div,25
+81,female,Another country,mountain division,19
+81,female,Another country,pacific division,69
+81,female,The United States,new england division,1
+81,female,The United States,middle atlantic division,7
+81,female,The United States,west north central div,3
+81,female,The United States,south atlantic division,11
+81,female,The United States,mountain division,2
+81,female,The United States,pacific division,5
+82,male,Another country,new england division,3
+82,male,Another country,middle atlantic division,25
+82,male,Another country,east north central div,19
+82,male,Another country,west north central div,2
+82,male,Another country,south atlantic division,27
+82,male,Another country,west south central div,13
+82,male,Another country,mountain division,8
+82,male,Another country,pacific division,55
+82,male,The United States,middle atlantic division,2
+82,male,The United States,south atlantic division,1
+82,male,The United States,west south central div,2
+82,male,The United States,pacific division,5
+82,female,Another country,new england division,16
+82,female,Another country,middle atlantic division,45
+82,female,Another country,east north central div,10
+82,female,Another country,west north central div,3
+82,female,Another country,south atlantic division,34
+82,female,Another country,east south central div,2
+82,female,Another country,west south central div,28
+82,female,Another country,mountain division,10
+82,female,Another country,pacific division,100
+82,female,The United States,new england division,1
+82,female,The United States,middle atlantic division,8
+82,female,The United States,east north central div,1
+82,female,The United States,south atlantic division,8
+82,female,The United States,west south central div,2
+82,female,The United States,pacific division,11
+83,male,Another country,new england division,7
+83,male,Another country,middle atlantic division,17
+83,male,Another country,east north central div,7
+83,male,Another country,west north central div,4
+83,male,Another country,south atlantic division,23
+83,male,Another country,west south central div,9
+83,male,Another country,mountain division,12
+83,male,Another country,pacific division,46
+83,male,The United States,new england division,1
+83,male,The United States,middle atlantic division,3
+83,male,The United States,south atlantic division,3
+83,male,The United States,west south central div,1
+83,male,The United States,mountain division,1
+83,male,The United States,pacific division,4
+83,female,Another country,new england division,14
+83,female,Another country,middle atlantic division,49
+83,female,Another country,east north central div,15
+83,female,Another country,west north central div,4
+83,female,Another country,south atlantic division,47
+83,female,Another country,east south central div,5
+83,female,Another country,west south central div,27
+83,female,Another country,mountain division,11
+83,female,Another country,pacific division,81
+83,female,The United States,middle atlantic division,1
+83,female,The United States,south atlantic division,3
+83,female,The United States,west south central div,3
+83,female,The United States,pacific division,7
+84,male,Another country,new england division,5
+84,male,Another country,middle atlantic division,19
+84,male,Another country,east north central div,8
+84,male,Another country,west north central div,1
+84,male,Another country,south atlantic division,14
+84,male,Another country,west south central div,9
+84,male,Another country,mountain division,3
+84,male,Another country,pacific division,34
+84,male,The United States,middle atlantic division,2
+84,male,The United States,south atlantic division,2
+84,male,The United States,west south central div,3
+84,male,The United States,pacific division,5
+84,female,Another country,new england division,6
+84,female,Another country,middle atlantic division,33
+84,female,Another country,east north central div,23
+84,female,Another country,west north central div,4
+84,female,Another country,south atlantic division,23
+84,female,Another country,east south central div,3
+84,female,Another country,west south central div,17
+84,female,Another country,mountain division,5
+84,female,Another country,pacific division,60
+84,female,The United States,new england division,2
+84,female,The United States,middle atlantic division,4
+84,female,The United States,south atlantic division,2
+84,female,The United States,west south central div,1
+84,female,The United States,pacific division,6
+85,male,Another country,new england division,5
+85,male,Another country,middle atlantic division,11
+85,male,Another country,east north central div,9
+85,male,Another country,south atlantic division,16
+85,male,Another country,west south central div,18
+85,male,Another country,mountain division,7
+85,male,Another country,pacific division,36
+85,male,The United States,new england division,1
+85,male,The United States,middle atlantic division,2
+85,male,The United States,south atlantic division,11
+85,male,The United States,pacific division,3
+85,female,Another country,new england division,6
+85,female,Another country,middle atlantic division,32
+85,female,Another country,east north central div,17
+85,female,Another country,west north central div,1
+85,female,Another country,south atlantic division,40
+85,female,Another country,east south central div,3
+85,female,Another country,west south central div,17
+85,female,Another country,mountain division,15
+85,female,Another country,pacific division,50
+85,female,The United States,middle atlantic division,5
+85,female,The United States,south atlantic division,7
+85,female,The United States,west south central div,1
+85,female,The United States,mountain division,2
+85,female,The United States,pacific division,4
+86,male,Another country,new england division,2
+86,male,Another country,middle atlantic division,10
+86,male,Another country,east north central div,4
+86,male,Another country,south atlantic division,8
+86,male,Another country,west south central div,10
+86,male,Another country,mountain division,9
+86,male,Another country,pacific division,30
+86,male,The United States,middle atlantic division,3
+86,male,The United States,south atlantic division,2
+86,male,The United States,mountain division,1
+86,male,The United States,pacific division,7
+86,female,Another country,new england division,12
+86,female,Another country,middle atlantic division,29
+86,female,Another country,east north central div,6
+86,female,Another country,west north central div,1
+86,female,Another country,south atlantic division,29
+86,female,Another country,west south central div,20
+86,female,Another country,mountain division,8
+86,female,Another country,pacific division,49
+86,female,The United States,new england division,2
+86,female,The United States,south atlantic division,5
+86,female,The United States,pacific division,6
+87,male,Another country,new england division,5
+87,male,Another country,middle atlantic division,1
+87,male,Another country,east north central div,11
+87,male,Another country,west north central div,1
+87,male,Another country,south atlantic division,11
+87,male,Another country,west south central div,7
+87,male,Another country,mountain division,9
+87,male,Another country,pacific division,34
+87,male,The United States,middle atlantic division,2
+87,male,The United States,west north central div,1
+87,male,The United States,west south central div,1
+87,male,The United States,pacific division,1
+87,female,Another country,new england division,8
+87,female,Another country,middle atlantic division,18
+87,female,Another country,east north central div,12
+87,female,Another country,south atlantic division,23
+87,female,Another country,east south central div,2
+87,female,Another country,west south central div,12
+87,female,Another country,mountain division,3
+87,female,Another country,pacific division,51
+87,female,The United States,new england division,1
+87,female,The United States,middle atlantic division,5
+87,female,The United States,south atlantic division,3
+87,female,The United States,west south central div,2
+87,female,The United States,mountain division,1
+87,female,The United States,pacific division,4
+88,male,Another country,new england division,1
+88,male,Another country,middle atlantic division,13
+88,male,Another country,east north central div,7
+88,male,Another country,south atlantic division,17
+88,male,Another country,west south central div,11
+88,male,Another country,mountain division,3
+88,male,Another country,pacific division,24
+88,male,The United States,new england division,1
+88,male,The United States,south atlantic division,3
+88,male,The United States,pacific division,2
+88,female,Another country,new england division,9
+88,female,Another country,middle atlantic division,18
+88,female,Another country,east north central div,8
+88,female,Another country,west north central div,2
+88,female,Another country,south atlantic division,29
+88,female,Another country,east south central div,2
+88,female,Another country,west south central div,12
+88,female,Another country,mountain division,6
+88,female,Another country,pacific division,57
+88,female,The United States,middle atlantic division,2
+88,female,The United States,west north central div,1
+88,female,The United States,south atlantic division,2
+88,female,The United States,east south central div,1
+88,female,The United States,pacific division,1
+89,male,Another country,new england division,3
+89,male,Another country,middle atlantic division,5
+89,male,Another country,east north central div,4
+89,male,Another country,west north central div,1
+89,male,Another country,south atlantic division,11
+89,male,Another country,east south central div,1
+89,male,Another country,west south central div,6
+89,male,Another country,mountain division,1
+89,male,Another country,pacific division,36
+89,male,The United States,middle atlantic division,1
+89,male,The United States,south atlantic division,3
+89,male,The United States,east south central div,1
+89,female,Another country,new england division,3
+89,female,Another country,middle atlantic division,13
+89,female,Another country,east north central div,9
+89,female,Another country,west north central div,3
+89,female,Another country,south atlantic division,22
+89,female,Another country,east south central div,1
+89,female,Another country,west south central div,11
+89,female,Another country,mountain division,2
+89,female,Another country,pacific division,42
+89,female,The United States,new england division,1
+89,female,The United States,east north central div,1
+89,female,The United States,south atlantic division,2
+89,female,The United States,pacific division,4
+90,male,Another country,new england division,1
+90,male,Another country,middle atlantic division,8
+90,male,Another country,east north central div,4
+90,male,Another country,west north central div,2
+90,male,Another country,south atlantic division,12
+90,male,Another country,west south central div,5
+90,male,Another country,mountain division,1
+90,male,Another country,pacific division,21
+90,male,The United States,middle atlantic division,1
+90,male,The United States,south atlantic division,2
+90,female,Another country,new england division,2
+90,female,Another country,middle atlantic division,9
+90,female,Another country,east north central div,7
+90,female,Another country,west north central div,1
+90,female,Another country,south atlantic division,14
+90,female,Another country,east south central div,1
+90,female,Another country,west south central div,14
+90,female,Another country,mountain division,5
+90,female,Another country,pacific division,30
+90,female,The United States,middle atlantic division,3
+90,female,The United States,east north central div,1
+90,female,The United States,south atlantic division,6
+90,female,The United States,west south central div,3
+90,female,The United States,pacific division,2
+91,male,Another country,middle atlantic division,8
+91,male,Another country,east north central div,5
+91,male,Another country,south atlantic division,9
+91,male,Another country,east south central div,1
+91,male,Another country,mountain division,1
+91,male,Another country,pacific division,15
+91,male,The United States,middle atlantic division,1
+91,male,The United States,south atlantic division,1
+91,male,The United States,east south central div,1
+91,male,The United States,pacific division,1
+91,female,Another country,new england division,5
+91,female,Another country,middle atlantic division,13
+91,female,Another country,east north central div,7
+91,female,Another country,south atlantic division,7
+91,female,Another country,mountain division,4
+91,female,Another country,pacific division,32
+91,female,The United States,new england division,2
+91,female,The United States,middle atlantic division,2
+91,female,The United States,east north central div,1
+91,female,The United States,south atlantic division,2
+91,female,The United States,pacific division,2
+92,male,Another country,middle atlantic division,7
+92,male,Another country,west north central div,1
+92,male,Another country,south atlantic division,5
+92,male,Another country,pacific division,16
+92,male,The United States,new england division,1
+92,male,The United States,south atlantic division,1
+92,male,The United States,pacific division,4
+92,female,Another country,new england division,6
+92,female,Another country,middle atlantic division,6
+92,female,Another country,east north central div,4
+92,female,Another country,south atlantic division,9
+92,female,Another country,pacific division,27
+92,female,The United States,middle atlantic division,1
+92,female,The United States,south atlantic division,1
+92,female,The United States,pacific division,3
+93,male,Another country,new england division,2
+93,male,Another country,middle atlantic division,4
+93,male,Another country,south atlantic division,7
+93,male,The United States,middle atlantic division,1
+93,male,The United States,south atlantic division,1
+93,female,Another country,new england division,2
+93,female,Another country,middle atlantic division,7
+93,female,Another country,east north central div,2
+93,female,Another country,west north central div,2
+93,female,Another country,south atlantic division,4
+93,female,Another country,pacific division,2
+93,female,The United States,middle atlantic division,1
+93,female,The United States,south atlantic division,1
+94,male,Another country,south atlantic division,2
+94,male,Another country,west south central div,17
+94,male,Another country,mountain division,1
+94,male,The United States,south atlantic division,2
+94,male,The United States,west south central div,1
+94,female,Another country,south atlantic division,8
+94,female,Another country,west south central div,37
+94,female,Another country,mountain division,1
+94,female,The United States,west south central div,6
+94,female,The United States,mountain division,3
+95,male,Another country,east south central div,1
+95,male,Another country,mountain division,4
+95,female,Another country,south atlantic division,1
+95,female,Another country,west south central div,2
+95,female,Another country,mountain division,14
+95,female,The United States,east south central div,1
+95,female,The United States,mountain division,1
+96,male,Another country,middle atlantic division,7
+96,male,Another country,east north central div,3
+96,male,Another country,south atlantic division,4
+96,male,Another country,pacific division,34
+96,male,The United States,middle atlantic division,2
+96,male,The United States,west south central div,1
+96,male,The United States,pacific division,5
+96,female,Another country,middle atlantic division,9
+96,female,Another country,east north central div,14
+96,female,Another country,west north central div,5
+96,female,Another country,south atlantic division,10
+96,female,Another country,west south central div,2
+96,female,Another country,pacific division,109
+96,female,The United States,middle atlantic division,5
+96,female,The United States,south atlantic division,1
+96,female,The United States,pacific division,12
+97,male,Another country,new england division,3
+97,male,Another country,middle atlantic division,9
+97,male,Another country,south atlantic division,5
+97,male,Another country,pacific division,1
+97,male,The United States,middle atlantic division,4
+97,male,The United States,south atlantic division,3
+97,female,Another country,new england division,5
+97,female,Another country,middle atlantic division,32
+97,female,Another country,east north central div,1
+97,female,Another country,west north central div,3
+97,female,Another country,south atlantic division,31
+97,female,Another country,pacific division,1
+97,female,The United States,middle atlantic division,4
+97,female,The United States,south atlantic division,2
+98,male,Another country,new england division,1
+98,male,Another country,pacific division,4
+98,female,Another country,new england division,3
+98,female,The United States,new england division,1

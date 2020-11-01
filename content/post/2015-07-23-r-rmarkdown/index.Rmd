@@ -1,0 +1,208 @@
+---
+title: "Forecasting for the 2020 US Election Using Post-stratification"
+author: "Shiqi Liu, Kai Sheng"
+date: 2020-11-02
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+```{r, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(kableExtra)
+# Loading in the cleaned survey Data
+survey_data <- read_csv("survey_data.csv")
+survey_data <- survey_data%>%filter(!is.na(vote_trump))
+# Loading in the cleaned census Data
+census_data <- read_csv("census_data.csv")
+knitr::opts_chunk$set(echo = FALSE)
+fig_cap <- captioner::captioner()
+tab_cap <- captioner::captioner("Table")
+options(dplyr.summarise.inform = FALSE)
+```
+# Model
+
+The 2020 US election day is around the corner, thus in this paper, we are interested in forecasting the popular vote outcome of the 2020 American federal election. We have obtained survey data from Democracy Fund Voter Study Group (Tausanovitch & Lynn, 2020), and census data from IPUMS USA (Ruggles et al., 2020). To do this we are employing a logistic regression model and  a post-stratification technique. In the following sub-sections, I will describe the model specifics and the post-stratification calculations.
+
+
+## Model Specifics
+
+Here we will build a logistic regression models to model the proportion of voters who will vote for Donald Trump. Since our response variable is binary, the logistic regression model will be suitable. As for the choice of variables, some research has shown that men would more prefer voting for Donald Trump than women (Tyson & Maniam, 2020). Additionally, young voters will more likely identify themselves as Democratic Party than elder voters (Rosentiel, 2020). As a result, the younger voters will be more in support of Joe Biden, while the elder voters with preference of Republican Party will more likely to vote for Donald Trump. Furthermore, the birth place may influence and shape one's political attitudes, thus affecting his/her voting preference. Therefore, we will choose these 3 variables as predictors in our model. The logistic regression model we are using is:
+
+$$ log(\frac{p}{1-p}) = \beta_0+\beta_1  x_{age} + \beta_2x_{Male} + \beta_3x_{BornUS} + \epsilon$$
+
+Where $p$ represents the proportion of voters who will vote for Donald Trump in the model_t. Regarding the parameters, $\beta_0$ represents the intercept of the model, and is the log odds of voting for Donald Trump by a female voter at age 0, who is not born in US. Additionally, $\beta_1$ , $\beta_2$ , $\beta_3$ represent the slopes of the model, which are the coefficients representing the change in log odds. Specifically, for every unit increase in age, we expect the log odds of voting for Donald Trump to increase by $\beta_1$. Furthermore, the log odds of voting for Donald Trump will increase by $\beta_2$ if the voter is male,and will increase by $\beta_3$ if the voter was born in US.
+
+In our trial model, we included "education" as our predictor variable as well. Nevertheless, after running our logistic regression model, no significance of parameters associated with educational level was observed, since p-values for all these parameters are significantly large. This indicates that the education level will not influence the voting preference for Donald Trump. Therefore, we decided only to use "age", "gender" and "foreign_born" (which indicates whether the respondent was born in the US or not) as our predictors.
+
+```{r, include=FALSE}
+# Creating the Model
+model_t_trial <- glm(vote_trump ~ age + gender + foreign_born + education, 
+            data=survey_data,family = binomial)
+summary(model_t_trial)
+model_t <- glm(vote_trump ~ age + gender + foreign_born, 
+            data=survey_data,family = binomial)
+summary(model_t)
+```
+
+## Post-Stratification 
+
+In this section, we are performing a post-stratification analysis to estimate the proportion of voters who will vote for Donald Trump and Joe Biden. Post-stratification is to divide the population into cells based on combinations of various demographic attributes, then use the sample to estimate the response variable in each cell, and finally aggregate the cell-level estimates up to a population-level estimate by weighting each cell by its relative proportion in the population. Post-stratification technique can be used to correct the known differences between sample and target populations by re-weighting when dealing with a non-representative sample(Wang, 2014). 
+
+Here we create cells based on genders, different ages and the birth places. Based on our selection of variables for the logistics regression model, "gender", "age", and "foreign_born" very likely to influence the voting preference of voters. Consequently, these 3 variables will tend to affect the voting outcome. Therefore, we will use these three variables to create cells.
+
+We will use the logistic regression model described in the previous model section to estimate the proportion of voters for Donald Trump in each cell. Finally, we will weight each proportion estimate within each cell by its respective population size, sum those values and divide that by the entire population size to get our estimate.
+
+# Results
+```{r}
+#Model result
+broom::tidy(model_t)
+```
+`r tab_cap(1,"Logistic Regression Model Summary")`
+
+We summarise our regression model from the previous model section in the Table 1, it gives us the result that $ log(\frac{\hat{p}}{1-\hat{p}}) = -1.3717 + 0.0132  x_{age} + 0.5286 x_{Male} + 0.4237 x_{BornUS} + \epsilon$. From this result, we can see that the log odds of voting for Trump will increase by 0.0132 with one unit increase in age, and the log odds of voting for Trump will increase by 0.5286 if the voter is male and increase by 0.4237 if the voter is born in the US. The p-values for all 3 slope parameters are significantly small, which suggests that our data reject the null hypothesis $H_0$ that these parameters are zero. 
+
+The results of our logistic regression model validate our hypothesis that the proportion of voting for Trump will increase as the voter's age increases, or if the voter is male. Moreover, the proportion of voting for trump will tend to be higher if the voter is born in the US.
+
+Based on our logistic regression model above, we will carry out the post-stratification calculation to get the proportion of voters in favor of Donald Trump for the whole population. The post-stratification calculation is: 
+
+$$\hat{y}^{PS} = \frac{\sum_{i=1}^{I} N_i\hat{y_i}}{\sum_{i=1}^{I} N_i}$$
+where $\hat{y_i}$ is the estimate of the proportion in cell $i$ , and $N_i$ is the size of the $i$th cell.
+
+```{r, include=FALSE}
+#Post-stratification calculation for voting Trump
+census_data$estimate_trump <-
+  model_t %>%
+  predict(newdata = census_data)
+log_odds_trump <-
+  census_data %>%
+  mutate(alp_predict_prop = estimate_trump*n) %>%
+  summarise(alp_predict = sum(alp_predict_prop)/sum(n))
+pro_vote_trump <- exp(log_odds_trump)/(1+exp(log_odds_trump))
+pro_vote_trump
+pro_vote_biden <- 1 - pro_vote_trump
+pro_vote_biden
+```
+Based off our post-stratification analysis and calculation, the estimate for the proportion of voters in favour of voting for Donald Trump is 0.3876, and the proportion voting for Joe Biden is 0.6124. The estimate is modelled by our logistic regression model, which explained the influence of gender, age and birth place on the voting outcome. 
+
+The estimates of proportion of voting for Donald Trump and Joe Biden within each cell are exhibited in the following Table 2.
+```{r}
+compare<-census_data %>%
+  mutate(alp_predict_prop = estimate_trump*n) %>%
+  group_by(age, gender, foreign_born) %>%
+  summarise(vote_trump = sum(alp_predict_prop)/sum(n))
+compare$vote_trump = exp(compare$vote_trump)/(1+exp(compare$vote_trump))
+compare$vote_biden = 1-compare$vote_trump
+compare %>% kable()%>%kable_styling()
+```
+`r tab_cap(2,"Post-stratification Estimate Within Each Cell")`
+
+```{r}
+compare_gender <- compare%>%group_by(gender)%>%
+  summarise(Trump = mean(vote_trump), Biden = mean(vote_biden))
+compare_gender %>%
+  ggplot(aes(y = Trump, x = gender, color = "Donald Trump")) +
+  geom_point() +
+  geom_errorbar(aes(ymin = min(Trump), ymax = max(Trump)), width = 0) +
+  ylab("Proportion of voters") + 
+  xlab("Gender") + 
+  geom_point(aes(y = Biden, x = gender, color = "Joe Biden")) + 
+  geom_errorbar(aes(ymin = min(Biden), ymax = max(Biden)), width = 0) +
+  theme_minimal() + 
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom") + 
+  theme(legend.title = element_blank())
+```
+`r fig_cap(1,"Voting Preference Across Genders")`
+
+From the Figure 1, we can see that male voters will more likely to support Donald Trump, while female voters are more likely to be in favour of voting for Joe Biden. This graph explains the influence of genders on the voting outcome.
+
+
+```{r}
+compare_age <- compare%>%group_by(age)%>%
+  summarise(Trump = mean(vote_trump), Biden = mean(vote_biden))
+compare_age %>%
+  ggplot(aes(y = Trump, x = age, color = "Donald Trump")) +
+  geom_point() +
+  ylab("Proportion of voters") + 
+  xlab("Age") + 
+  geom_point(aes(y = Biden, x = age, color = "Joe Biden")) + 
+  theme_minimal() + 
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom") + 
+  theme(legend.title = element_blank())
+```
+`r fig_cap(2,"Voting Preference Changing With Age ")`
+
+The Figure 2 above illustrates how different age groups affect the voting outcome. As we can see clearly from the graph, voters of older ages will more tend to vote for Donald Trump. On the other hand, younger voters are more likely to be in favor of voting for Joe Biden.
+
+```{r}
+compare_foreign_born <- compare%>%group_by(foreign_born)%>%
+  summarise(Trump = mean(vote_trump), Biden = mean(vote_biden))
+compare_foreign_born %>%
+  ggplot(aes(y = Trump, x = foreign_born, color = "Donald Trump")) +
+  geom_point() +
+  geom_errorbar(aes(ymin = min(Trump), ymax = max(Trump)), width = 0) +
+  ylab("Proportion of voters") + 
+  xlab("foreign_born") + 
+  geom_point(aes(y = Biden, x = foreign_born, color = "Joe Biden")) + 
+  geom_errorbar(aes(ymin = min(Biden), ymax = max(Biden)), width = 0) +
+  theme_minimal() + 
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom") + 
+  theme(legend.title = element_blank())
+```
+`r fig_cap(3,"Voting Preference Across Birth Place ")`
+
+Regarding the influence of birth place on the voting outcome, the Figure 3 has shown that voters born in the US will more likely to vote for Donald Trump. On the contrary, voters who were born in foreign countries tend to be more support for Joe Biden.
+
+
+
+# Discussion
+
+## Summary
+
+In this paper, we have employed a logistic regression model and a post-stratification analysis to predict the overall popular vote outcome of the 2020 American federal election. We firstly fit our regression model based on the survey data to predict the proportion of voters in favour of voting for Donald Trump. Then we perform a post-stratification analysis based on census data by dividing the population into cells by different ages, genders and birth places. Finally, we use our model to calculate the proportion estimate of voters in support of Donald Trump. In addition, based off our regression model, we have also observed some significant predictor variables which will influence the voting outcome, which include gender, age and birth place.
+
+### Data Cleaning
+
+To better compare the proportion of voting in favour of Donald Trump and Joe Biden, we have removed observations with responds "Someone else" and "I would not vote". Because samples with these two answers will not influence our forecasting for the proportion of voting for Trump and Biden, by removing these respondents, we can better focus on the observations which are meaningful for our prediction. Moreover, to further improve the accuracy of our prediction, since the census data was collected in 2018, we add age by 2 for each observation to get the respondents' current age. Then we have removed those observations with ages under 18 and those non-citizens in the census data. Because non-citizens and population under 18 have no voting rights, those observations are meaningless in our prediction. 
+
+## Conclusion
+
+Given our logistic regression model and post-stratification analysis, the most striking result to emerge form our analysis is that Joe Biden will win the popular vote of the 2020 American federal election, and the probability of Joe Biden winning the election will be 22.4840% higher than the probability of Donald Trump winning.
+
+## Weaknesses
+
+Despite the results given by our model and analysis, our work has some limitations. First, the amount of respondents of age greater than 90 in the survey data was very limited, those minorities might not be representative of all population of age greater than 90. Second, the survey data was collected between June 25 to July 01, 2020, there is a quite large time gap between the data collection time and the real election day. People's political attitudes and preferences very likely to change during these 4 months, which will decrease the accuracy of our prediction. Furthermore, during this special COVID-19 period, multiple events will influence the 2020 election, which include the pandemic, the economic recession, and protests (Gruca & Rietz, 2020). However, we did not take these factors into consideration when we perform our analysis. Last but not least, presidents are eventually elected by electoral college, but not by popular vote, our scientific prediction may also need to pick out what will evidentially influence the electoral college voting outcome. 
+
+## Next Steps
+
+First of all, we could compare our prediction with the actual election result and do a post-hoc analysis to identify the limitations of our model and methods and to better improve forecasting in future elections. Future work could be carried to do a survey collecting people's demographics with their actual vote, which could help with exploring other significant predictor variables and identify other factors that will influence the voting outcome. Moreover, the social class could be a more efficient predictor variable in predicting the voting outcome, because it combines the income level, education level and profession altogether.
+
+
+# References
+
+Gruca, T., & Rietz, T. (2020). The 2020 (Re)Election According to the Iowa Electronic Markets: Politics, Pandemic, Recession, and/or Protests? PS: Political Science & Politics, 1-5. doi:10.1017/S1049096520001419
+
+Hao Zhu (2020). kableExtra: Construct Complex Table with 'kable' and Pipe Syntax. http://haozhu233.github.io/kableExtra/, https://github.com/haozhu233/kableExtra.
+
+Rosentiel, T. (2020, May 30). Gen Dems: The Party's Advantage Among Young Voters Widens. Retrieved October 31, 2020, from https://www.pewresearch.org/2008/04/28/gen-dems-the-partys-advantage-among-young-voters-widens/
+
+Ruggles, S., Flood, S., Goeken, R., Grover, J., Meyer, E., Pacas, J., & Sobek, M.. (n.d.). (2020). IPUMS USA: Version 10.0 [dataset]. Minneapolis, MN: IPUMS, 2020. https://doi.org/10.18128/D010.V10.0
+
+Tausanovitch, C., & Lynn V. (2020). Democracy Fund + UCLA Nationscape, October 10-
+17, 2019 (version 20200814). Retrieved from https://www.voterstudygroup.org/publication/nationscape-data-set.
+
+Tyson, A., & Maniam, S. (2020, August 14). Behind Trump's victory: Divisions by race, gender and education. Retrieved October 31, 2020, from https://www.pewresearch.org/fact-tank/2016/11/09/behind-trumps-victory-divisions-by-race-gender-education/
+
+Wang, W., et al., Forecasting elections with non-representative polls. International Journal of Forecasting (2014), http://dx.doi.org/10.1016/j.ijforecast.2014.06.001
+
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+
+
+
+

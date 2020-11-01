@@ -120,7 +120,6 @@ compare_gender %>%
 
 From the Figure 1, we can see that male voters will more likely to support Donald Trump, while female voters are more likely to be in favour of voting for Joe Biden. This graph explains the influence of genders on the voting outcome.
 
-
 ```{r}
 compare_age <- compare%>%group_by(age)%>%
   summarise(Trump = mean(vote_trump), Biden = mean(vote_biden))

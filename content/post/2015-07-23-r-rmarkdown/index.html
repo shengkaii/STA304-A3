@@ -31,6 +31,13 @@ tags: ["R Markdown", "plot", "regression"]
 <p>Here we create cells based on genders, different ages and the birth places. Based on our selection of variables for the logistics regression model, “gender”, “age”, and “foreign_born” very likely to influence the voting preference of voters. Consequently, these 3 variables will tend to affect the voting outcome. Therefore, we will use these three variables to create cells.</p>
 <p>We will use the logistic regression model described in the previous model section to estimate the proportion of voters for Donald Trump in each cell. Finally, we will weight each proportion estimate within each cell by its respective population size, sum those values and divide that by the entire population size to get our estimate.</p>
 </div>
+<div id="additional-information" class="section level2">
+<h2>Additional Information</h2>
+<div id="data-cleaning" class="section level3">
+<h3>Data Cleaning</h3>
+<p>To better compare the proportion of voting in favour of Donald Trump and Joe Biden, we have removed observations with responds “Someone else” and “I would not vote”. Because samples with these two answers will not influence our forecasting for the proportion of voting for Trump and Biden, by removing these respondents, we can better focus on the observations which are meaningful for our prediction. Consequently, since the responses only include “Donald Trump” and “Joe Biden”, once we get the estimate of the proportion of voters in favour of Donald Trump, we can calculate the proportion of voters in favour of Joe Biden directly, since the sum of these two estimates will be 1. Moreover, to further improve the accuracy of our prediction, since the census data was collected in 2018, we add age by 2 for each observation to get the respondents’ current age. Then we have removed those observations with ages under 18 and those non-citizens in the census data. Because non-citizens and population under 18 have no voting rights, those observations are meaningless in our prediction.</p>
+</div>
+</div>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
@@ -5562,10 +5569,6 @@ Figure 3: Voting Preference Across Birth Place</p>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
 <p>In this paper, we have employed a logistic regression model and a post-stratification analysis to predict the overall popular vote outcome of the 2020 American federal election. We firstly fit our regression model based on the survey data to predict the proportion of voters in favour of voting for Donald Trump. Then we perform a post-stratification analysis based on census data by dividing the population into cells by different ages, genders and birth places. Finally, we use our model to calculate the proportion estimate of voters in support of Donald Trump. In addition, based off our regression model, we have also observed some significant predictor variables which will influence the voting outcome, which include gender, age and birth place.</p>
-<div id="data-cleaning" class="section level3">
-<h3>Data Cleaning</h3>
-<p>To better compare the proportion of voting in favour of Donald Trump and Joe Biden, we have removed observations with responds “Someone else” and “I would not vote”. Because samples with these two answers will not influence our forecasting for the proportion of voting for Trump and Biden, by removing these respondents, we can better focus on the observations which are meaningful for our prediction. Moreover, to further improve the accuracy of our prediction, since the census data was collected in 2018, we add age by 2 for each observation to get the respondents’ current age. Then we have removed those observations with ages under 18 and those non-citizens in the census data. Because non-citizens and population under 18 have no voting rights, those observations are meaningless in our prediction.</p>
-</div>
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
@@ -5584,7 +5587,7 @@ Figure 3: Voting Preference Across Birth Place</p>
 <div id="references" class="section level1">
 <h1>References</h1>
 <p>Gruca, T., &amp; Rietz, T. (2020). The 2020 (Re)Election According to the Iowa Electronic Markets: Politics, Pandemic, Recession, and/or Protests? PS: Political Science &amp; Politics, 1-5. <a href="doi:10.1017/S1049096520001419" class="uri">doi:10.1017/S1049096520001419</a></p>
-<p>Hao Zhu (2020). kableExtra: Construct Complex Table with ‘kable’ and Pipe Syntax. <a href="http://haozhu233.github.io/kableExtra/" class="uri">http://haozhu233.github.io/kableExtra/</a>, <a href="https://github.com/haozhu233/kableExtra" class="uri">https://github.com/haozhu233/kableExtra</a>.</p>
+<p>Zhu, H. (2020). kableExtra: Construct Complex Table with ‘kable’ and Pipe Syntax. <a href="http://haozhu233.github.io/kableExtra/" class="uri">http://haozhu233.github.io/kableExtra/</a>, <a href="https://github.com/haozhu233/kableExtra" class="uri">https://github.com/haozhu233/kableExtra</a>.</p>
 <p>Rosentiel, T. (2020, May 30). Gen Dems: The Party’s Advantage Among Young Voters Widens. Retrieved October 31, 2020, from <a href="https://www.pewresearch.org/2008/04/28/gen-dems-the-partys-advantage-among-young-voters-widens/" class="uri">https://www.pewresearch.org/2008/04/28/gen-dems-the-partys-advantage-among-young-voters-widens/</a></p>
 <p>Ruggles, S., Flood, S., Goeken, R., Grover, J., Meyer, E., Pacas, J., &amp; Sobek, M.. (n.d.). (2020). IPUMS USA: Version 10.0 [dataset]. Minneapolis, MN: IPUMS, 2020. <a href="https://doi.org/10.18128/D010.V10.0" class="uri">https://doi.org/10.18128/D010.V10.0</a></p>
 <p>Tausanovitch, C., &amp; Lynn V. (2020). Democracy Fund + UCLA Nationscape, October 10-

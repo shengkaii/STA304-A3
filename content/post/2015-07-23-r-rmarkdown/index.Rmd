@@ -1,6 +1,6 @@
 ---
 title: "Forecasting for the 2020 US Election Using Post-stratification"
-author: "Shiqi Liu, Kai Sheng"
+author: Shiqi Liu, Kai Sheng
 date: 2020-11-02
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
@@ -23,6 +23,7 @@ fig_cap <- captioner::captioner()
 tab_cap <- captioner::captioner("Table")
 options(dplyr.summarise.inform = FALSE)
 ```
+
 # Model
 
 The 2020 US election day is around the corner, thus in this paper, we are interested in forecasting the popular vote outcome of the 2020 American federal election. We have obtained survey data from Democracy Fund Voter Study Group (Tausanovitch & Lynn, 2020), and census data from IPUMS USA (Ruggles et al., 2020). To do this we are employing a logistic regression model and  a post-stratification technique. In the following sub-sections, I will describe the model specifics and the post-stratification calculations.

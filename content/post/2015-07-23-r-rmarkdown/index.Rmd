@@ -99,6 +99,7 @@ compare %>% kable()%>%kable_styling()
 ```
 `r tab_cap(2,"Post-stratification Estimate Within Each Cell")`
 
+
 ```{r}
 compare_gender <- compare%>%group_by(gender)%>%
   summarise(Trump = mean(vote_trump), Biden = mean(vote_biden))

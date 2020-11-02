@@ -1,11 +1,11 @@
 ---
 title: "Forecasting for the 2020 US Election Using Post-stratification"
-author: Shiqi Liu, Kai Sheng
+author: "Shiqi Liu, Kai Sheng"
 date: 2020-11-02
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
 ---
-
+# Authors: Shiqi Liu and Kai Sheng
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
 ```
